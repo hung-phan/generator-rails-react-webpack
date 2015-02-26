@@ -3,23 +3,23 @@
   "devDependencies": {
     "babel": "*",
     "babel-core": "*",
-    "babelify": "*",
-    "envify": "*",
-    "browserify": "=8.0.1",
-    "browserify-shim": "*",
-    "watchify": "*",
+    "babel-loader": "*",
+    "babel-runtime": "*",
+    "chunk-manifest-webpack-plugin": "*",
     "del": "*",
+    "envify": "*",
+    "exports-loader": "*",
     "gulp": "*",
     "gulp-if": "*",
     "gulp-plumber": "*",
     "gulp-util": "*",
-    "lodash": "*",
+    "imports-loader": "*",
     "jest-cli": "*",
+    "lodash": "*",
     "minimist": "*",
     "node-notifier": "*",
-    "regenerator": "*",
     "require-dir": "*",
-    "vinyl-transform": "*"
+    "webpack": "*"
   },
   "dependencies": { },
   "scripts": {
@@ -27,14 +27,6 @@
   },
   "jest": {
     "scriptPreprocessor": "./preprocessor.js"
-  },
-  "browser": { },
-  "browserify-shim": {
-    "jquery": "global:$",
-    "lodash": "global:_",
-    "react": "global:React",
-    "react-router": "global:ReactRouter",
-    "superagent": "global:superagent"
   },
   "license": "MIT",
   "engines": {
