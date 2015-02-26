@@ -1,5 +1,43 @@
 {
-  "name": "package",
-  "version": "0.0.0",
-  "dependencies": {}
+  "name": "<%= _.slugify(appname) %>",
+  "devDependencies": {
+    "babel": "*",
+    "babel-core": "*",
+    "babelify": "*",
+    "envify": "*",
+    "browserify": "=8.0.1",
+    "browserify-shim": "*",
+    "watchify": "*",
+    "del": "*",
+    "gulp": "*",
+    "gulp-if": "*",
+    "gulp-plumber": "*",
+    "gulp-util": "*",
+    "lodash": "*",
+    "jest-cli": "*",
+    "minimist": "*",
+    "node-notifier": "*",
+    "regenerator": "*",
+    "require-dir": "*",
+    "vinyl-transform": "*"
+  },
+  "dependencies": { },
+  "scripts": {
+    "test": "jest"
+  },
+  "jest": {
+    "scriptPreprocessor": "./preprocessor.js"
+  },
+  "browser": { },
+  "browserify-shim": {
+    "jquery": "global:$",
+    "lodash": "global:_",
+    "react": "global:React",
+    "react-router": "global:ReactRouter",
+    "superagent": "global:superagent"
+  },
+  "license": "MIT",
+  "engines": {
+    "node": ">= 0.10"
+  }
 }

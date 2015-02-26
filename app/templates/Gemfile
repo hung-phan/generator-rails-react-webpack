@@ -1,0 +1,42 @@
+# twitter bootstrap
+gem 'bootstrap-sass'
+# auto prefixer
+gem 'autoprefixer-rails'
+# bower dependencies manager for rails
+gem 'bower-rails'<% if (includeModernizr) { %>
+# modernizr
+gem 'modernizr-rails', '~> 2.7.1'<% } %><% if (includeMongodb) { %>
+# mongoid
+gem 'mongoid'<% } %>
+
+group :development, :test do
+  gem 'faker' # https://github.com/stympy/faker
+  gem 'factory_girl_rails' # https://github.com/thoughtbot/factory_girl_rails
+  gem 'database_cleaner'
+  gem 'rspec'
+  gem 'rspec-rails' # https://github.com/rspec/rspec-rails
+  gem 'guard'
+  gem 'guard-rspec'
+  gem 'shoulda-matchers' # https://github.com/thoughtbot/shoulda-matchers
+  gem 'shoulda-callback-matchers', '~> 1.0'
+  gem 'spring-commands-rspec'
+  gem 'jasmine'
+  gem 'jasmine-rails'
+  gem 'mailcatcher'
+  gem 'did_you_mean'<% if (includeLiveReload) { %>
+  gem 'guard-livereload', require: false<% } %>
+end
+group :development do
+  gem 'better_errors'
+  gem 'binding_of_caller'
+  gem 'meta_request'
+end
+# react jsx compile
+gem 'react-rails', '~> 1.0.0.pre', github: 'reactjs/react-rails'<% if (includeFontAwesome) { %>
+# font awesome
+gem 'font-awesome-rails'<% } %><% if (includeGrape) { %>
+# grape api
+gem 'grape-entity'
+gem 'grape'<% } %><% if (includeRubyRacer) { %>
+# embed the V8 Javascript Interpreter into Ruby
+gem 'therubyracer', platforms: :ruby<% } %>
