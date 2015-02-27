@@ -150,7 +150,7 @@ module.exports = yeoman.generators.Base.extend({
     this.copy('_bowerrc', '.bowerrc');
     this.copy('_gulpfile.js', 'gulpfile.js');
     this.directory('webpack', 'config/webpack');
-    this.cope('initializers/webpack.rb', 'config/initializers/webpack.rb');
+    this.copy('initializers/webpack.rb', 'config/initializers/webpack.rb');
     this.directory('__tests__', '__tests__');
   },
 
@@ -276,7 +276,7 @@ module.exports = yeoman.generators.Base.extend({
         insert = "/app/assets/javascripts/build\n";
 
     if (file.indexOf(insert) === -1) {
-      this.write(path, hook + insert);
+      this.write(path, file + insert);
     }
   },
 
