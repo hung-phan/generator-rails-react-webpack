@@ -4,13 +4,13 @@
  * Development config
  */
 
-var _             = require('lodash'),
-    del           = require('del'),
-    gulp          = require('gulp'),
-    gutil         = require('gulp-util'),
-    minimist      = require('minimist'),
-    notifier      = require('node-notifier'),
-    errorsHandler = require('./errors-handler');
+var _        = require('lodash'),
+    del      = require('del'),
+    gulp     = require('gulp'),
+    gutil    = require('gulp-util'),
+    minimist = require('minimist'),
+    webpack  = require('webpack'),
+    notifier = require('node-notifier');
 
 // clean task
 gulp.task('javascript:clean', function () {
@@ -23,11 +23,9 @@ gulp.task('javascript:clean', function () {
 });
 
 // watch task
-gulp.task('javascript:dev', function () {
+gulp.task('javascript:dev', function (cb) {
   var started = false,
-      argv    = minimist(process.argv.slice(2)),
-      config  = require('./development.config.js'),
-      bundler = webpack(config),
+      bundler = webpack(require('./development.config.js')),
       bundle  = function (err, stats) {
         if (err) {
           notifier.notify({ message: 'Error: ' + err.message });
@@ -40,19 +38,13 @@ gulp.task('javascript:dev', function () {
         }
       }
 
-  if (argv.watch) {
-    bundler.watch(200, bundle);
-  } else {
-    bundler.run(bundle);
-  }
+  bundler.watch(200, bundle);
 });
 
 // build task
-gulp.task('javascript:build', ['javascript:clean'], function() {
+gulp.task('javascript:build', ['javascript:clean'], function(cb) {
   var started = false,
-      argv    = minimist(process.argv.slice(2)),
-      config  = require('./production.config.js'),
-      bundler = webpack(config),
+      bundler = webpack(require('./production.config.js')),
       bundle  = function (err, stats) {
         if (err) {
           notifier.notify({ message: 'Error: ' + err.message });

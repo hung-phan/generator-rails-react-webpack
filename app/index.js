@@ -222,16 +222,13 @@ module.exports = yeoman.generators.Base.extend({
 
     //modify file before insert
     file = file.replace("//= require turbolinks\n", '')
+               .replace("//= require jquery\n", '')
                .replace("//= require_tree .",
-                        "//= require react\n" +
-                        "//= require react_ujs\n" +
-                        (this.includeSuperagent ? "//= require superagent/superagent\n" : "") +
-                        "//= require react-router/build/global/ReactRouter\n" +
-                        "//= require build/main.bundle");
+                        "//= require react_ujs\n");
 
 
     this.write(path, file);
-    this.template('app/main.js', 'app/frontend/javascripts/main.bundle.js');
+    this.template('app/main.js', 'app/frontend/javascripts/main.js');
     this.template('app/home/home.js', 'app/frontend/javascripts/home/home.js');
   },
 
