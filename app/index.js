@@ -270,6 +270,17 @@ module.exports = yeoman.generators.Base.extend({
     }
   },
 
+  gitIgnore: function() {
+    console.log(magenta('Processing .gitignore'));
+    var path   = '.gitignore',
+        file   = this.readFileAsString(path),
+        insert = "/app/assets/javascripts/build\n";
+
+    if (file.indexOf(insert) === -1) {
+      this.write(path, hook + insert);
+    }
+  },
+
   rspecRails: function() {
     shell.exec("rails generate rspec:install");
   },

@@ -21,7 +21,7 @@ var _             = require('lodash'),
 
 // clean task
 gulp.task('javascript:clean', function () {
-  del([config.browserify.build], function (err, paths) {
+  del([config.development.build], function (err, paths) {
     gutil.log(
       'Deleted files/folders:\n',
       gutil.colors.cyan(paths.join('\n'))
@@ -35,7 +35,7 @@ gulp.task('javascript:dev', function () {
       bundler,
       cached = {},
       argv = minimist(process.argv.slice(2)),
-      source = argv.only ? config.browserify.path + argv.only : config.browserify.src;
+      source = argv.only ? config.development.path + argv.only : config.development.src;
 
   bundler = function() {
     return transform(function(filename) {
@@ -70,7 +70,7 @@ gulp.task('javascript:dev', function () {
     var stream = gulp.src([source])
                    .pipe(plumber({ errorHandler: errorsHandler.browserifyErrorHandler }))
                    .pipe(bundler())
-                   .pipe(gulp.dest(config.browserify.build));
+                   .pipe(gulp.dest(config.development.build));
 
     return stream;
   };
@@ -86,9 +86,6 @@ gulp.task('javascript:build', ['javascript:clean'], function() {
             });
 
     b.on('error', errorsHandler.browserifyErrorHandler);
-    b.on('time', function(time) {
-      gutil.log(gutil.colors.green('Bundle'), filename + gutil.colors.magenta(' in ' + time + 'ms'));
-    });
     b.transform(babelify);
     b.transform(shimify);
     b.transform(envify({
@@ -98,10 +95,10 @@ gulp.task('javascript:build', ['javascript:clean'], function() {
     return b.bundle();
   });
 
-  var stream = gulp.src([config.browserify.src])
+  var stream = gulp.src([config.production.src])
                  .pipe(plumber({ errorHandler: errorsHandler.browserifyErrorHandler }))
                  .pipe(browserified)
-                 .pipe(gulp.dest(config.browserify.build));
+                 .pipe(gulp.dest(config.production.build));
 
   return stream;
 });
