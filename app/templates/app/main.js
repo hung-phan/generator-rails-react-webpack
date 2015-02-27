@@ -2,6 +2,7 @@
 
 // lib
 let $      = require('jquery');
+let React  = require('react/addons');
 let Router = require('react-router');
 
 // component

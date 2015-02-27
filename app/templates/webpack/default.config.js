@@ -14,13 +14,7 @@ module.exports = {
     filename: '[name].bundle.js',
     chunkFilename: '[id].bundle.js'
   },
-  externals: {
-    'jquery': 'window.$',
-    'lodash': 'window._',
-    'react': 'window.React',
-    'react-router': 'window.ReactRouter',
-    'superagent': 'window.superagent'
-  },
+  externals: {},
   resolve: {
     modulesDirectories: ['node_modules', 'vendor/assets/bower_components'],
     extensions: ['', '.js']
