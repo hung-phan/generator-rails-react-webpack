@@ -15,12 +15,17 @@
     "gulp-util": "*",
     "imports-loader": "*",
     "jest-cli": "*",
-    "lodash": "*",
     "minimist": "*",
     "node-notifier": "*",
     "webpack": "*"
   },
-  "dependencies": { },
+  "dependencies": {
+    "jquery": "*",
+    "lodash": "*",<% if (includeSuperagent) { %>
+    "superagent": "*",<% } %>
+    "react": "*",
+    "react-router": "*"
+  },
   "scripts": {
     "test": "jest"
   },

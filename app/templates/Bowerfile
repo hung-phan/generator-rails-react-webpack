@@ -1,7 +1,2 @@
-# auto generate bower assets<% if (includeLodash) { %>
-
-asset 'lodash'<% } %>
-asset 'js-csp'
-asset 'react-router'<% if (includeSuperagent) { %>
-asset 'superagent'<% } %><% if (includeAnimateCss) { %>
+# auto generate bower assets<% if (includeAnimateCss) { %>
 asset 'animate-sass'<% } %>
