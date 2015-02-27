@@ -24,7 +24,7 @@ gulp.task('javascript:clean', function () {
 });
 
 // watch task
-gulp.task('javascript:dev', function (cb) {
+gulp.task('javascript:dev', ['javascript:clean'], function (cb) {
   var started = false,
       bundler = webpack(require('./development.config.js')),
       bundle  = function (err, stats) {

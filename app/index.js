@@ -249,7 +249,7 @@ module.exports = yeoman.generators.Base.extend({
     path   = 'config/environments/production.rb',
     hook   = 'Rails.application.configure do\n',
     file   = this.readFileAsString(path),
-    insert = "config.webpack[:use_manifest] = true\n  config.react.variant = :development\n  config.react.addons = true\n";
+    insert = "  config.webpack[:use_manifest] = true\n  config.react.variant = :development\n  config.react.addons = true\n";
 
     if (file.indexOf(insert) === -1) {
       this.write(path, file.replace(hook, hook + insert));
