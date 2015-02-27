@@ -5,6 +5,7 @@
  */
 
 var _        = require('lodash'),
+    config   = require('./config.json'),
     del      = require('del'),
     gulp     = require('gulp'),
     gutil    = require('gulp-util'),

@@ -18,7 +18,6 @@
     "lodash": "*",
     "minimist": "*",
     "node-notifier": "*",
-    "require-dir": "*",
     "webpack": "*"
   },
   "dependencies": { },
