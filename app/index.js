@@ -150,6 +150,7 @@ module.exports = yeoman.generators.Base.extend({
     this.copy('_bowerrc', '.bowerrc');
     this.copy('_gulpfile.js', 'gulpfile.js');
     this.directory('webpack', 'config/webpack');
+    this.cope('initializers/webpack.rb', 'config/initializers/webpack.rb');
     this.directory('__tests__', '__tests__');
   },
 
@@ -188,7 +189,13 @@ module.exports = yeoman.generators.Base.extend({
     var path   = 'config/application.rb',
         hook   = 'class Application < Rails::Application\n',
         file   = this.readFileAsString(path),
-        insert = '    config.autoload_paths += %W(#{config.root}/lib #{Rails.root}/app)\n';
+        insert = '    config.autoload_paths += %W(#{config.root}/lib #{Rails.root}/app)\n' +
+                 '    config.webpack = {\n' +
+                 '       use_manifest: false,\n' +
+                 '       asset_manifest: {},\n' +
+                 '       common_manifest: {}\n' +
+                 '    }\n' +
+                 ';
 
     if (file.indexOf(insert) === -1) {
       this.write(path, file.replace(hook, hook + insert));
