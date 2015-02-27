@@ -5,23 +5,16 @@
  */
 
 var _             = require('lodash'),
-    config        = require('./config.json'),
     del           = require('del'),
     gulp          = require('gulp'),
     gutil         = require('gulp-util'),
-    plumber       = require('gulp-plumber'),
-    transform     = require('vinyl-transform'),
-    browserify    = require('browserify'),
-    watchify      = require('watchify'),
-    babelify      = require('babelify'),
-    envify        = require('envify/custom'),
-    shimify       = require('browserify-shim'),
     minimist      = require('minimist'),
+    notifier      = require('node-notifier'),
     errorsHandler = require('./errors-handler');
 
 // clean task
 gulp.task('javascript:clean', function () {
-  del([config.development.build], function (err, paths) {
+  del([config.webpack.build], function (err, paths) {
     gutil.log(
       'Deleted files/folders:\n',
       gutil.colors.cyan(paths.join('\n'))
@@ -31,74 +24,46 @@ gulp.task('javascript:clean', function () {
 
 // watch task
 gulp.task('javascript:dev', function () {
-  var bundle,
-      bundler,
-      cached = {},
-      argv = minimist(process.argv.slice(2)),
-      source = argv.only ? config.development.path + argv.only : config.development.src;
-
-  bundler = function() {
-    return transform(function(filename) {
-      // cached
-      if (cached[filename]) {
-        return cached[filename].bundle();
+  var started = false,
+      argv    = minimist(process.argv.slice(2)),
+      config  = require('./development.config.js'),
+      bundler = webpack(config),
+      bundle  = function (err, stats) {
+        if (err) {
+          notifier.notify({ message: 'Error: ' + err.message });
+          throw new gutil.PluginError('webpack', err);
+        }
+        gutil.log('[webpack]', stats.toString({colors: true}));
+        if (!started) {
+          started = true;
+          return cb();
+        }
       }
 
-      var b = watchify(browserify(filename, _.extend({
-                runtime: require.resolve('regenerator/runtime'),
-                debug: true
-              }, watchify.args)));
-
-      b.on('time', function(time) {
-        gutil.log(gutil.colors.green('Bundle'), filename + gutil.colors.magenta(' in ' + time + 'ms'));
-      });
-      b.on('error', errorsHandler.browserifyErrorHandler);
-      b.on('update', bundle);
-      b.transform(babelify);
-      b.transform(shimify);
-      b.transform(envify({
-        NODE_ENV: 'development'
-      }));
-
-      cached[filename] = b;
-
-      return b.bundle();
-    });
-  };
-
-  bundle = function() {
-    var stream = gulp.src([source])
-                   .pipe(plumber({ errorHandler: errorsHandler.browserifyErrorHandler }))
-                   .pipe(bundler())
-                   .pipe(gulp.dest(config.development.build));
-
-    return stream;
-  };
-
-  return bundle();
+  if (argv.watch) {
+    bundler.watch(200, bundle);
+  } else {
+    bundler.run(bundle);
+  }
 });
 
 // build task
 gulp.task('javascript:build', ['javascript:clean'], function() {
-  var browserified = transform(function(filename) {
-    var b = browserify(filename, {
-              runtime: require.resolve('regenerator/runtime')
-            });
+  var started = false,
+      argv    = minimist(process.argv.slice(2)),
+      config  = require('./production.config.js'),
+      bundler = webpack(config),
+      bundle  = function (err, stats) {
+        if (err) {
+          notifier.notify({ message: 'Error: ' + err.message });
+          throw new gutil.PluginError('webpack', err);
+        }
+        gutil.log('[webpack]', stats.toString({colors: true}));
+        if (!started) {
+          started = true;
+          return cb();
+        }
+      }
 
-    b.on('error', errorsHandler.browserifyErrorHandler);
-    b.transform(babelify);
-    b.transform(shimify);
-    b.transform(envify({
-      NODE_ENV: 'production'
-    }));
-
-    return b.bundle();
-  });
-
-  var stream = gulp.src([config.production.src])
-                 .pipe(plumber({ errorHandler: errorsHandler.browserifyErrorHandler }))
-                 .pipe(browserified)
-                 .pipe(gulp.dest(config.production.build));
-
-  return stream;
+  bundler.run(bundle);
 });

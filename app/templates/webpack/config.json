@@ -1,7 +1,6 @@
 {
-  "browserify": {
+  "webpack": {
     "path": "./app/frontend/javascripts/",
-    "src": "./app/frontend/javascripts/*.bundle.js",
     "test": "./__tests__/**/*-test.js",
     "build": "./app/assets/javascripts/build"
   }
