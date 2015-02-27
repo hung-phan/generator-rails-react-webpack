@@ -194,8 +194,7 @@ module.exports = yeoman.generators.Base.extend({
                  '       use_manifest: false,\n' +
                  '       asset_manifest: {},\n' +
                  '       common_manifest: {}\n' +
-                 '    }\n' +
-                 ';
+                 '    }\n';
 
     if (file.indexOf(insert) === -1) {
       this.write(path, file.replace(hook, hook + insert));
