@@ -1,6 +1,10 @@
 'use strict'
 
-// lib
+// expose jQuery for jquery_ujs
+require('expose?jQuery!jquery');
+// expose React for react_ujs
+require('expose?React!react/addons');
+
 let $      = require('jquery');
 let React  = require('react/addons');
 let Router = require('react-router');
