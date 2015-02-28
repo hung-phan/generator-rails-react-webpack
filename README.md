@@ -45,30 +45,26 @@ using [6to5](https://6to5.org/) with the support of [Webpack](http://webpack.git
 `regeneratorRunTime` environment to support ES6 generators feature which allows you to using modern javascript libraries like
 [js-csp](https://github.com/ubolonton/js-csp) today.
 
-### gulpfile.js
-
-- `config/webpack/config.json` is responsible for storing application config. Additionally, you can define extra configurations
-  here, then, it will be loaded into `javascript-build.js` via `config = require('./config.json');`
-- `config/browserify/default.config.js` contains the basic webpack configuration for both development and production environment.
-  
 ### Feature
 
+- `config/webpack/config.json` is responsible for storing application configuration. In addition, you can set up any extra configurations
+  here, which will be loaded into `javascript-build.js` via `config = require('./config.json');`
+- `config/browserify/default.config.js` contains the basic webpack settings for both development and production environment.
+
+
 ### Current transformation applied
+
 - [babel-loader](https://github.com/babel/babel-loader)
 - [expose-loader](https://github.com/webpack/expose-loader)
 - [imports-loader](https://github.com/webpack/imports-loader)
 - [exports-loader](https://github.com/webpack/exports-loader)
-
-### ES6 generator
-Add `require('babel/pollyfill');` to support es6 generator syntax
 
 ### Available gulp task
 
 ```bash
 $ guld javascript:clean # remove the build folder placed at 'app/assets/javascripts/build'
 $ guld javascript:dev # watch over changes for multiple js bundle
-$ guld javascript:dev --only main.bundle.js # watch over changes for single js module
-$ guld javascript:build # build for production with no source map
+$ guld javascript:build # build for production
 ```
 
 ## Start developing
