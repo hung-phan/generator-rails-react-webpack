@@ -35,8 +35,10 @@ Answer 'Yes' to all 'Overwrite' actions. Then, update 'config/database.yml' if y
 
 ## Application template
 
-I define all my javascript modules in 'app/frontend/javascripts', which will be compiled into 'app/assets/javascript/build'
-folder later.
+### javascript module
+
+All javascript modules are placed in 'app/frontend/javascripts' folder, which will be compiled into 'app/assets/javascript/build'
+folder. 'app/assets/javascript/build' is also ignored which I will explain later in this `README.md` file.
 
 ### package.json
 
