@@ -171,6 +171,9 @@ application/
   |- README.rdoc
 ```
 
+## Acknowledgement
+Thanks Dave Clark for this wonderful [post](http://clarkdave.net/2015/01/how-to-use-webpack-with-rails/)
+
 ## Running example
 ![alt text](https://raw.githubusercontent.com/hung-phan/generator-rails-react-webpack/master/screenshot.png "application screenshot")
 
