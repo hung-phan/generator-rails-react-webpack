@@ -42,14 +42,18 @@ folder. 'app/assets/javascript/build' is also ignored in `.gitignore` which I wi
 
 ### package.json
 
-Manage dependencies for javascript modules with incremental rebuilding for each module.
+Manage dependencies for javascript modules.
 
-### webpack
+### Webpack
 
-- `config.json` is responsible for storing application configuration. In addition, you can set up any extra configurations
-  here, which will be loaded into `javascript-build.js` via `config = require('./config.json');`
-- `default.config.js` contains the basic webpack settings for both development and production environment.
+- `config.json` is responsible for loading additional configurations into `javascript-build.js` via `config = require('./config.json');`
+- `default.config.js` contains the basic webpack settings for both development and production environment. You can have any available
+  webpack settings here.
+- `development.config.js` contains development config for webpack
+- `production.config.js` contains production config for webpack
+- `javascript-build.js` is responsible for defining automation tasks for building the application
 
+### [Code spliting](http://webpack.github.io/docs/code-splitting.html)
 
 ### Current transformation applied
 
@@ -63,7 +67,7 @@ Manage dependencies for javascript modules with incremental rebuilding for each 
 ```bash
 $ guld javascript:clean # remove the build folder placed at 'app/assets/javascripts/build'
 $ guld javascript:dev # watch over changes for multiple js bundle
-$ guld javascript:build # build for production
+$ guld javascript:build # should use this for testing only, please read Assets compile
 ```
 
 ## Start developing
@@ -72,9 +76,6 @@ Run these commands, and start coding
 
 ```bash
 $ gulp javascript:dev
-```
-
-```bash
 $ rails server
 ```
 
@@ -82,8 +83,8 @@ $ rails server
 Compile your assets before deploying to production server
 
 ```bash
-$ gulp javascript:build
 $ rake assets:precompile RAILS_ENV=production
+$ rake webpack:compile
 ```
 
 ## Options
