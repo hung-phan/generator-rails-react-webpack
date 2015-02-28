@@ -181,7 +181,7 @@ application/
 ```
 
 ## Running example
-![alt text](https://raw.githubusercontent.com/hung-phan/generator-rails-react-browserify/master/screenshot.png "application screenshot")
+![alt text](https://raw.githubusercontent.com/hung-phan/generator-rails-react-webpack/master/screenshot.png "application screenshot")
 
 ## Contribution
 All contributions are welcomed.
