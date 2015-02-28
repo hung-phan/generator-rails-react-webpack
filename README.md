@@ -38,40 +38,26 @@ Answer 'Yes' to all 'Overwrite' actions. Then, update 'config/database.yml' if y
 I define all my javascript modules in 'app/frontend/javascripts', which will be compiled into 'app/assets/javascript/build'
 folder later.
 
-## Multiple bundle for browserify
-Append suffix __.bundle.js__ for each built module.
-
-```
-application/
-  |- app/
-  |  |- frontend/
-  |  |  |- javascripts/
-  |  |  |  |- <page-module>.bundle.js
-```
-
-Change the default configuration for built glob in `config/browserify/config.json` if you want to use other suffix than '.bundle.js'
-
 ### package.json
 
 Manage development dependencies for javascript with incremental rebuilding for each module. Turn ES6+ code into vanilla ES5
-using [6to5](https://6to5.org/) with the support of [Browserify](http://browserify.org/) for javascript moduling. Inject
+using [6to5](https://6to5.org/) with the support of [Webpack](http://webpack.github.io) for javascript moduling. Inject
 `regeneratorRunTime` environment to support ES6 generators feature which allows you to using modern javascript libraries like
-[js-csp](https://github.com/ubolonton/js-csp) today. Contain transform configurations for [browserify-shim](https://github.com/thlorenz/browserify-shim).
-Make sure that view their [recipes](https://github.com/thlorenz/browserify-shim/wiki/browserify-shim-recipes) for more informations.
+[js-csp](https://github.com/ubolonton/js-csp) today.
 
 ### gulpfile.js
 
-- `config/browserify/config.json` is responsible for controlling development and production build for javascript modules. Additionally, you can
-  define extra configurations here, then, it will be loaded into `javascript-build.js` via `config = require('./config.json');`
-- `config/browserify/errors-handler.json` is responsible for errors handling. Currently, there is only [Browserify](http://browserify.org/)
-  has use this functions
-- `config/browserify/javascript-build.json` is responsible for transforming ES6+ into ES5 and building javascript modules.
+- `config/webpack/config.json` is responsible for storing application config. Additionally, you can define extra configurations
+  here, then, it will be loaded into `javascript-build.js` via `config = require('./config.json');`
+- `config/browserify/default.config.js` contains the basic webpack configuration for both development and production environment.
+  
+### Feature
 
 ### Current transformation applied
-
-- [babelify](https://github.com/babel/babelify)
-- [browserify-shim](https://github.com/thlorenz/browserify-shim)
-- [envify](https://github.com/babel/babelify)
+- [babel-loader](https://github.com/babel/babel-loader)
+- [expose-loader](https://github.com/webpack/expose-loader)
+- [imports-loader](https://github.com/webpack/imports-loader)
+- [exports-loader](https://github.com/webpack/exports-loader)
 
 ### ES6 generator
 Add `require('babel/pollyfill');` to support es6 generator syntax

@@ -1,8 +1,7 @@
 'use strict'
 
-// expose jQuery for jquery_ujs
+// expose jQuery for jquery_ujs and React for react_ujs
 require('expose?jQuery!expose?$!jquery');
-// expose React for react_ujs
 require('expose?React!react/addons');
 
 let $      = require('jquery');
