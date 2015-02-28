@@ -53,7 +53,8 @@ Manage dependencies for javascript modules.
 - `production.config.js` contains production config for webpack
 - `javascript-build.js` is responsible for defining automation tasks for building the application
 
-### [Code spliting](http://webpack.github.io/docs/code-splitting.html)
+### Code splitting
+Refer to [webpack code spliting](http://webpack.github.io/docs/code-splitting.html)
 
 ### Current transformation applied
 
