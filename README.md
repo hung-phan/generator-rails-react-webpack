@@ -177,6 +177,9 @@ Thanks Dave Clark for this wonderful [post](http://clarkdave.net/2015/01/how-to-
 ## Running example
 ![alt text](https://raw.githubusercontent.com/hung-phan/generator-rails-react-webpack/master/screenshot.png "application screenshot")
 
+## Upcoming
+HOT MODULE REPLACEMENT WITH WEBPACK
+
 ## Contribution
 All contributions are welcomed.
 
