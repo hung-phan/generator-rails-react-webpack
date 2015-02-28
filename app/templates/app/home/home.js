@@ -48,8 +48,9 @@ let Home  = React.createClass({
             <h1 onClick={this.clickMeUpdate}>{this.state.text}</h1>
           </div>
           <div className="col-lg-6">
-            <h4>Browserify</h4>
-            <p>Browserify lets you require('modules') in the browser by bundling up all of your dependencies.</p>
+            <h4>Webpack</h4>
+            <p>webpack is a module bundler.</p>
+            <p>webpack takes modules with dependencies and generates static assets representing those modules.</p>
           </div>
         </div>
 
