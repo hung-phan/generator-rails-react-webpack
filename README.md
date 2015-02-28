@@ -12,7 +12,7 @@ To install `generator-rails-react-webpack` from npm, run:
 $ npm install -g generator-rails-react-webpack
 ```
 
-## Usage for Rails 4.*
+## Up and Running
 
 Create Ruby on Rails project with normal `rails` command, but skip gem bundling:
 
@@ -35,23 +35,20 @@ Answer 'Yes' to all 'Overwrite' actions. Then, update 'config/database.yml' if y
 
 ## Application template
 
-### javascript module
+### javascript modules
 
 All javascript modules are placed in 'app/frontend/javascripts' folder, which will be compiled into 'app/assets/javascript/build'
-folder. 'app/assets/javascript/build' is also ignored which I will explain later in this `README.md` file.
+folder. 'app/assets/javascript/build' is also ignored in `.gitignore` which I will explain in [config/webpack](#webpack).
 
 ### package.json
 
-Manage development dependencies for javascript with incremental rebuilding for each module. Turn ES6+ code into vanilla ES5
-using [6to5](https://6to5.org/) with the support of [Webpack](http://webpack.github.io) for javascript moduling. Inject
-`regeneratorRunTime` environment to support ES6 generators feature which allows you to using modern javascript libraries like
-[js-csp](https://github.com/ubolonton/js-csp) today.
+Manage dependencies for javascript modules with incremental rebuilding for each module.
 
-### Feature
+### webpack
 
-- `config/webpack/config.json` is responsible for storing application configuration. In addition, you can set up any extra configurations
+- `config.json` is responsible for storing application configuration. In addition, you can set up any extra configurations
   here, which will be loaded into `javascript-build.js` via `config = require('./config.json');`
-- `config/browserify/default.config.js` contains the basic webpack settings for both development and production environment.
+- `default.config.js` contains the basic webpack settings for both development and production environment.
 
 
 ### Current transformation applied
