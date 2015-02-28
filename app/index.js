@@ -273,7 +273,8 @@ module.exports = yeoman.generators.Base.extend({
     console.log(magenta('Processing .gitignore'));
     var path   = '.gitignore',
         file   = this.readFileAsString(path),
-        insert = "/app/assets/javascripts/build\n";
+        insert = "app/assets/javascripts/build\n" +
+                 "node_modules\n";
 
     if (file.indexOf(insert) === -1) {
       this.write(path, file + insert);
