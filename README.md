@@ -37,8 +37,8 @@ Answer 'Yes' to all 'Overwrite' actions. Then, update 'config/database.yml' if y
 
 ### javascript modules
 
-All javascript modules are placed in 'app/frontend/javascripts' folder, which will be compiled into 'app/assets/javascript/build'
-folder. 'app/assets/javascript/build' is also ignored in `.gitignore` which I will explain in [config/webpack](#webpack).
+All javascript modules are placed in `app/frontend/javascripts` folder, which will be compiled into `app/assets/javascript/build`
+folder. `app/assets/javascript/build` is also ignored in `.gitignore` which I will explain in [config/webpack](#webpack).
 
 ### package.json
 
@@ -49,9 +49,9 @@ Manage dependencies for javascript modules.
 - `config.json` is responsible for loading additional configurations into `javascript-build.js` via `config = require('./config.json');`
 - `default.config.js` contains the basic webpack settings for both development and production environment. You can have any available
   webpack settings here.
-- `development.config.js` contains development config for webpack
-- `production.config.js` contains production config for webpack
-- `javascript-build.js` is responsible for defining automation tasks for building the application
+- `development.config.js` contains development config for webpack.
+- `production.config.js` contains production config for webpack.
+- `javascript-build.js` is responsible for defining javascript built tasks.
 
 ### Code splitting
 Refer to [webpack code spliting](http://webpack.github.io/docs/code-splitting.html)
@@ -121,7 +121,7 @@ application/
   |  |- frontend/
   |  |  |- javascripts/
   |  |  |  |- <page-module-dependencies>/
-  |  |  |  |- <page-module>.bundle.js
+  |  |  |  |- <page-module>.js
   |  |  |- stylesheets/
   |  |  |  |- application.css
   |  |- controllers/
@@ -135,14 +135,22 @@ application/
   |  |  |  |- application.html.erb
   |- bin/
   |- config/
+  |  |- initializers/
+  |  |  |- *.rb
+  |  |  |- webpack.rb # webpack manifest config
   |  |- browserify/
   |  |  |- config.json
-  |  |  |- errors-handler.js
+  |  |  |- default.config.js
+  |  |  |- development.config.js
   |  |  |- javascript-build.js
+  |  |  |- production.config.js
   |  |- initializers/
   |  |  |- bower_rails.rb # bower rails config
   |- db/
   |- lib/
+  |  |- assets/
+  |  |- tasks/
+  |  |  |- webpack.rake # built task
   |- log/
   |- public/
   |- test/
