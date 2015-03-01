@@ -5,12 +5,12 @@ var _             = require('lodash'),
     webpack       = require('webpack');
 
 module.exports = _.merge(defaultConfig, {
-  //entry: {
-    //main: [
-      //'webpack-dev-server/client?http://localhost:8080/assets/',
-      //'webpack/hot/only-dev-server'
-    //]
-  //},
+  /*entry: {
+    main: [
+      'webpack-dev-server/client?http://localhost:8080/assets/',
+      'webpack/hot/only-dev-server'
+    ]
+  },*/
   cache: true,
   debug: true,
   outputPathinfo: true,
