@@ -17,9 +17,9 @@ module.exports = _.merge(defaultConfig, {
   devtool: '#inline-source-map',
   plugins: [
     // Hot module replacement
-    //new webpack.HotModuleReplacementPlugin(),
-    //new webpack.NoErrorsPlugin(),
-    //new webpack.optimize.CommonsChunkPlugin('common', 'common.bundle.js'),
+    /*new webpack.HotModuleReplacementPlugin(),
+    new webpack.NoErrorsPlugin(),*/
+    /*new webpack.optimize.CommonsChunkPlugin('common', 'common.bundle.js'),*/
     new webpack.DefinePlugin({ 'process.env.NODE_ENV': '"development"', '__DEV__': true })
   ]
 }, function(obj1, obj2) {
