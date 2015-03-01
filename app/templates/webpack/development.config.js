@@ -5,20 +5,27 @@ var _             = require('lodash'),
     webpack       = require('webpack');
 
 module.exports = _.merge(defaultConfig, {
+  // http://kevinold.com/2015/02/04/configure-webpack-dev-server-and-react-hot-loader-with-ruby-on-rails.html
   /*entry: {
     main: [
       'webpack-dev-server/client?http://localhost:8080/assets/',
       'webpack/hot/only-dev-server'
     ]
-  },*/
+  },*/ // Hot Module Replacement
   cache: true,
   debug: true,
   outputPathinfo: true,
   devtool: '#inline-source-map',
+  /*module: {
+    loaders: [{
+      test: /.js$/,
+      //exclude: /node_modules(?!.*(\/js-csp))/, // ignore node_modules except node_modules/js-csp
+      exclude: /node_modules/,
+      loader: 'react-hot'
+    }]
+  },*/ // Hot Module Replacement
   plugins: [
-    // Hot module replacement
-    /*new webpack.HotModuleReplacementPlugin(),
-    new webpack.NoErrorsPlugin(),*/
+    /*new webpack.HotModuleReplacementPlugin(), new webpack.NoErrorsPlugin(),*/ // Hot Module Replacement
     /*new webpack.optimize.CommonsChunkPlugin('common', 'common.bundle.js'),*/
     new webpack.DefinePlugin({ 'process.env.NODE_ENV': '"development"', '__DEV__': true })
   ]

@@ -27,7 +27,8 @@
     "react-router": "*"
   },
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "webpack-dev": "webpack-dev-server --config config/webpack/development.config.js --hot --progress --inline"
   },
   "jest": {
     "scriptPreprocessor": "./preprocessor.js"

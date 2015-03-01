@@ -80,6 +80,13 @@ $ gulp javascript:dev
 $ rails server
 ```
 
+For [Hot Module Replacement](http://webpack.github.io/docs/hot-module-replacement-with-webpack.html), update `config/webpack/development.config.js` and run these command instead:
+
+```bash
+$ npm run webpack-dev
+$ rails server
+```
+
 ## Assets compile
 Compile your assets before deploying to production server
 
