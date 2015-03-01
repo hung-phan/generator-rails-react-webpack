@@ -1,23 +1,23 @@
 {
   "name": "<%= _.slugify(appname) %>",
   "devDependencies": {
-    "babel": "*",
-    "babel-core": "*",
-    "babel-loader": "*",
-    "babel-runtime": "*",
-    "chunk-manifest-webpack-plugin": "*",
     "del": "*",
-    "exports-loader": "*",
-    "imports-loader": "*",
-    "expose-loader": "*",
     "gulp": "*",
     "gulp-util": "*",
     "jest-cli": "*",
     "minimist": "*",
-    "node-notifier": "*",
-    "webpack": "*"
+    "node-notifier": "*"
   },
   "dependencies": {
+    "webpack": "*",
+    "chunk-manifest-webpack-plugin": "*",
+    "babel": "*",
+    "babel-core": "*",
+    "babel-loader": "*",
+    "babel-runtime": "*",
+    "exports-loader": "*",
+    "imports-loader": "*",
+    "expose-loader": "*",
     "jquery": "*",
     "lodash": "*",<% if (includeSuperagent) { %>
     "superagent": "*",<% } %>
