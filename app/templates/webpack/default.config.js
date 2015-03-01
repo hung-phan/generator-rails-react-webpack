@@ -22,8 +22,8 @@ module.exports = {
   module: {
     loaders: [{
       test: /.js$/,
-      //exclude: /node_modules/,
-      exclude: /node_modules(?!\/js-csp)/,
+      //exclude: /node_modules(?!\/js-csp)/,
+      exclude: /node_modules/,
       loader: 'babel-loader?experimental&optional=runtime'
     }]
   },
