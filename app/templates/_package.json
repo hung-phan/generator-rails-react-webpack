@@ -6,7 +6,9 @@
     "gulp-util": "*",
     "jest-cli": "*",
     "minimist": "*",
-    "node-notifier": "*"
+    "node-notifier": "*",
+    "react-hot-loader": "*",
+    "webpack-dev-server": "*"
   },
   "dependencies": {
     "webpack": "*",
