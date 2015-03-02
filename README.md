@@ -38,7 +38,7 @@ Answer 'Yes' to all 'Overwrite' actions. Then, update 'config/database.yml' if y
 ### Javascript modules
 
 All javascript modules are placed in `app/frontend/javascripts` folder, which will be compiled into `app/assets/javascript/build`
-folder. In addition, `app/assets/javascript/build` is appended to `.gitignore` (Explains in [config/webpack](#webpack)).
+folder. In addition, `app/assets/javascript/build` is appended to `.gitignore` (Webpack built bundles will be ignored and rebuilt every deployment).
 
 Control you application assets via [webpack](http://webpack.github.io/docs/) or [sprockets](https://github.com/sstephenson/sprockets).
 However, for javascript files, prefer `webpack` over `sprockets` for the reason that those will run through loaders before getting
@@ -151,6 +151,40 @@ Uncomment those and add these tags before your main bundle in your layout:
 ```
 
 ### Hot Module Replacement
+
+Refer to [HMR](https://github.com/gaearon/react-hot-loader) for detail implementations, only for `development.config.js`.
+Uncomment all `HMR` config in `development.config.js`.
+
+```javascript
+  /*entry: {
+    main: [
+      'webpack-dev-server/client?http://localhost:8080/assets/',
+      'webpack/hot/only-dev-server'
+    ]
+  },*/ // Hot Module Replacement
+  ...
+  /*module: {
+    loaders: [{
+      test: /.js$/,
+      //exclude: /node_modules(?!.*(\/js-csp))/, // ignore node_modules except node_modules/js-csp
+      exclude: /node_modules/,
+      loader: 'react-hot'
+    }]
+  },*/ // Hot Module Replacement
+  plugins: [
+    /*new webpack.HotModuleReplacementPlugin(), new webpack.NoErrorsPlugin(),*/ // Hot Module Replacement
+    ...
+  ]
+```
+
+And `app/helpers/application_helper.rb`
+
+```ruby
+  "http://localhost:8080/assets/build/#{bundle}.bundle.js" # Hot module replacement
+  # "assets/build/#{bundle}.bundle"
+```
+
+This config will concat to entry module
 
 ### Current transformation applied
 

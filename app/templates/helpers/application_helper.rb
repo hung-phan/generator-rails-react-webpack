@@ -7,8 +7,7 @@ module ApplicationHelper
 
         "assets/#{bundle}"
       else
-        # Hot module replacement
-        #"http://localhost:8080/assets/build/#{bundle}.bundle.js"
+        #"http://localhost:8080/assets/build/#{bundle}.bundle.js" # Hot module replacement
         "assets/build/#{bundle}.bundle"
       end
 
