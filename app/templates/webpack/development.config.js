@@ -5,7 +5,6 @@ var _             = require('lodash'),
     webpack       = require('webpack');
 
 module.exports = _.merge(defaultConfig, {
-  // http://kevinold.com/2015/02/04/configure-webpack-dev-server-and-react-hot-loader-with-ruby-on-rails.html
   /*entry: {
     main: [
       'webpack-dev-server/client?http://localhost:8080/assets/',

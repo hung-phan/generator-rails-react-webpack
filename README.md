@@ -40,22 +40,88 @@ Answer 'Yes' to all 'Overwrite' actions. Then, update 'config/database.yml' if y
 All javascript modules are placed in `app/frontend/javascripts` folder, which will be compiled into `app/assets/javascript/build`
 folder. In addition, `app/assets/javascript/build` is appended to `.gitignore` (Explains in [config/webpack](#webpack)).
 
-There are multiple ways to control you application assets (via [webpack](http://webpack.github.io/docs/) or [sprockets](https://github.com/sstephenson/sprockets)).
-However, for scriptings, prefer `webpack` over `sprockets` for the reason that `*.js` files will run through a loader before getting
-serve at the browser to empower the power of es6 and its technologies.
+Control you application assets via [webpack](http://webpack.github.io/docs/) or [sprockets](https://github.com/sstephenson/sprockets).
+However, for javascript files, prefer `webpack` over `sprockets` for the reason that those will run through loaders before getting
+serve at the browser.
 
 ### package.json
 
-Manage dependencies for javascript modules.
+Manage built tools and application dependencies
 
 ### Webpack
 
-- `config.json` is responsible for loading additional configurations into `javascript-build.js` via `config = require('./config.json');`
-- `default.config.js` contains the basic webpack settings for both development and production environment. You can have any available
-  webpack settings here.
-- `development.config.js` contains development config for webpack.
-- `production.config.js` contains production config for webpack.
-- `javascript-build.js` is responsible for defining javascript built tasks.
+- `config.json`: loads additional configurations into `javascript-build.js` via `config = require('./config.json');`
+
+  ```
+    {
+      "webpack": {
+        "path": "./app/frontend/javascripts/",
+        "test": "./__tests__/**/*-test.js",
+        "build": "./app/assets/javascripts/build"
+      }
+    }
+  ```
+- `default.config.js`: the basic webpack settings for both development and production environment. You can have any available
+  webpack settings here. For example, config [externals](http://webpack.github.io/docs/library-and-externals.html),
+  [loaders](http://webpack.github.io/docs/using-loaders.html), and so on.
+
+  ```
+    module.exports = {
+      context: path.join(__dirname, '../', '../'),
+      entry: {
+        main: './app/frontend/javascripts/main'
+      },
+      ...
+      externals: {},
+      ...
+      module: {
+        loaders: [{
+          test: /.js$/,
+          //exclude: /node_modules(?!.*(\/js-csp))/, // ignore node_modules except node_modules/js-csp
+          exclude: /node_modules/,
+          loader: 'babel-loader?experimental&optional=runtime'
+        }]
+      },
+    };
+  ```
+- `development.config.js`: contains development config for webpack. For advance usage, [Hot Module Replacement](#Hot Module Replacement), and
+  [Code splitting](#Code splitting).
+
+  ```
+    module.exports = _.merge(defaultConfig, {
+      cache: true,
+      debug: true,
+      outputPathinfo: true,
+      devtool: '#inline-source-map',
+      plugins: [
+        new webpack.DefinePlugin({ 'process.env.NODE_ENV': '"development"', '__DEV__': true })
+      ]
+      ...
+  ```
+- `production.config.js`: contains production config for webpack. For advance usage, [Hot Module Replacement](#Hot Module Replacement), and
+  [Code splitting](#Code splitting).
+
+  ```
+    module.exports = _.merge(defaultConfig, {
+      devtool: 'source-map',
+      output: {
+        path: './public/assets',
+        publicPath: '/assets/',
+        filename: '[name]-[chunkhash].bundle.js',
+        chunkFilename: '[id]-[chunkhash].bundle.js'
+      },
+      plugins: [
+        new webpack.DefinePlugin({ 'process.env.NODE_ENV': '"production"', '__DEV__': false }),
+        new ChunkManifestPlugin({
+          filename: 'webpack-common-manifest.json',
+          manfiestVariable: 'webpackBundleManifest'
+        }),
+        new webpack.optimize.UglifyJsPlugin()
+      ]
+  ```
+- `javascript-build.js`: is responsible for defining javascript built tasks.
+
+### Hot Module Replacement
 
 ### Code splitting
 Refer to [webpack code spliting](http://webpack.github.io/docs/code-splitting.html)
@@ -193,10 +259,6 @@ Thanks Dave Clark for this wonderful [post](http://clarkdave.net/2015/01/how-to-
 ## Running example
 
 ![alt text](https://raw.githubusercontent.com/hung-phan/generator-rails-react-webpack/master/screenshot.png "application screenshot")
-
-## Upcoming
-
-HOT MODULE REPLACEMENT WITH WEBPACK
 
 ## Contribution
 
