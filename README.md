@@ -143,7 +143,7 @@ Bundles are created by `require` or `require.ensure` will be automatically loade
   /*new webpack.optimize.CommonsChunkPlugin('common', 'common-[chunkhash].bundle.js'),*/ // production.config.js
 ```
 
-Uncomment those and add those tag before your main bundle:
+Uncomment those and add these tags before your main bundle in your layout:
 
 ```
 <%= webpack_bundle_tag 'common' %>
