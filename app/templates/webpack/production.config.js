@@ -14,7 +14,7 @@ module.exports = _.merge(defaultConfig, {
     chunkFilename: '[id]-[chunkhash].bundle.js'
   },
   plugins: [
-    //new webpack.optimize.CommonsChunkPlugin('common', 'common-[chunkhash].bundle.js'),
+    /*new webpack.optimize.CommonsChunkPlugin('common', 'common-[chunkhash].bundle.js'),*/ // Code splitting
     new webpack.DefinePlugin({ 'process.env.NODE_ENV': '"production"', '__DEV__': false }),
     new ChunkManifestPlugin({
       filename: 'webpack-common-manifest.json',

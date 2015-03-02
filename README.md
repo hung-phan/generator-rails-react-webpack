@@ -98,8 +98,7 @@ Manage built tools and application dependencies
       ]
       ...
   ```
-- `production.config.js`: contains production config for webpack. For advance usage, [Hot Module Replacement](#Hot Module Replacement), and
-  [Code splitting](#Code splitting).
+- `production.config.js`: contains production config for webpack. For advance usage, [Code splitting](#Code splitting).
 
   ```
     module.exports = _.merge(defaultConfig, {
@@ -119,12 +118,39 @@ Manage built tools and application dependencies
         new webpack.optimize.UglifyJsPlugin()
       ]
   ```
-- `javascript-build.js`: is responsible for defining javascript built tasks.
+- `javascript-build.js`: defines javascript built tasks.
 
-### Hot Module Replacement
+  ```
+    var _        = require('lodash'),
+        config   = require('./config.json'),
+        del      = require('del'),
+        gulp     = require('gulp'),
+        ...;
+
+    gulp.task('javascript:clean', function () { ... });
+    gulp.task('javascript:dev', function () { ... });
+    gulp.task('javascript:build', function () { ... });
+  ```
 
 ### Code splitting
-Refer to [webpack code spliting](http://webpack.github.io/docs/code-splitting.html)
+
+Refer to [webpack code spliting](http://webpack.github.io/docs/code-splitting.html) for detail implementations.
+Bundles are created by `require` or `require.ensure` will be automatically loaded. Additionally, all the settings in
+`devlopment.config.js` and `production.config.js` for `optimizing common chunk` have been added to config files.
+
+```
+  /*new webpack.optimize.CommonsChunkPlugin('common', 'common.bundle.js'),*/ // development.config.js
+  /*new webpack.optimize.CommonsChunkPlugin('common', 'common-[chunkhash].bundle.js'),*/ // production.config.js
+```
+
+Uncomment those and add those tag before your main bundle:
+
+```
+<%= webpack_bundle_tag 'common' %>
+<%= webpack_bundle_tag 'main' %>
+```
+
+### Hot Module Replacement
 
 ### Current transformation applied
 
