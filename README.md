@@ -139,11 +139,11 @@ Bundles are created by `require` or `require.ensure` will be automatically loade
 `devlopment.config.js` and `production.config.js` for `optimizing common chunk` have been added to config files.
 
 ```javascript
-  /*new webpack.optimize.CommonsChunkPlugin('common', 'common.bundle.js'),*/ // development.config.js
-  /*new webpack.optimize.CommonsChunkPlugin('common', 'common-[chunkhash].bundle.js'),*/ // production.config.js
+  new webpack.optimize.CommonsChunkPlugin('common', 'common.bundle.js'), // development.config.js
+  new webpack.optimize.CommonsChunkPlugin('common', 'common-[chunkhash].bundle.js'), // production.config.js
 ```
 
-Uncomment those and add these tags before your main bundle in your layout:
+Uncomment those and add this tag `<%= webpack_bundle_tag 'common' %>` before your main bundle in your layout:
 
 ```
 <%= webpack_bundle_tag 'common' %>
@@ -163,16 +163,16 @@ Uncomment all `HMR` config in `development.config.js`.
     ]
   },*/ // Hot Module Replacement
   ...
-  /*module: {
+  module: {
     loaders: [{
       test: /.js$/,
       //exclude: /node_modules(?!.*(\/js-csp))/, // ignore node_modules except node_modules/js-csp
       exclude: /node_modules/,
       loader: 'react-hot'
     }]
-  },*/ // Hot Module Replacement
+  }, // Hot Module Replacement
   plugins: [
-    /*new webpack.HotModuleReplacementPlugin(), new webpack.NoErrorsPlugin(),*/ // Hot Module Replacement
+    new webpack.HotModuleReplacementPlugin(), new webpack.NoErrorsPlugin(), // Hot Module Replacement
     ...
   ]
 ```
@@ -184,7 +184,20 @@ And `app/helpers/application_helper.rb`
   # "assets/build/#{bundle}.bundle"
 ```
 
-This config will concat to entry module
+This config will concat to every entry with specify in this `development.config.js`. The result will be like:
+
+```javascript
+  entry: {
+    main: [
+      'webpack-dev-server/client?http://localhost:8080/assets/',
+      'webpack/hot/only-dev-server',
+      './app/frontend/javascripts/main'
+    ]
+  }, // Hot Module Replacement
+  
+```
+
+Then [start coding](#Start developing)
 
 ### Current transformation applied
 
