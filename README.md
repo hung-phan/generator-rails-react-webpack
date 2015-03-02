@@ -52,7 +52,7 @@ Manage built tools and application dependencies
 
 - `config.json`: loads additional configurations into `javascript-build.js` via `config = require('./config.json');`
 
-  ```
+  ```json
     {
       "webpack": {
         "path": "./app/frontend/javascripts/",
@@ -65,7 +65,7 @@ Manage built tools and application dependencies
   webpack settings here. For example, config [externals](http://webpack.github.io/docs/library-and-externals.html),
   [loaders](http://webpack.github.io/docs/using-loaders.html), and so on.
 
-  ```
+  ```javascript
     module.exports = {
       context: path.join(__dirname, '../', '../'),
       entry: {
@@ -87,7 +87,7 @@ Manage built tools and application dependencies
 - `development.config.js`: contains development config for webpack. For advance usage, [Hot Module Replacement](#Hot Module Replacement), and
   [Code splitting](#Code splitting).
 
-  ```
+  ```javascript
     module.exports = _.merge(defaultConfig, {
       cache: true,
       debug: true,
@@ -100,7 +100,7 @@ Manage built tools and application dependencies
   ```
 - `production.config.js`: contains production config for webpack. For advance usage, [Code splitting](#Code splitting).
 
-  ```
+  ```javascript
     module.exports = _.merge(defaultConfig, {
       devtool: 'source-map',
       output: {
@@ -120,7 +120,7 @@ Manage built tools and application dependencies
   ```
 - `javascript-build.js`: defines javascript built tasks.
 
-  ```
+  ```javascript
     var _        = require('lodash'),
         config   = require('./config.json'),
         del      = require('del'),
@@ -138,7 +138,7 @@ Refer to [webpack code spliting](http://webpack.github.io/docs/code-splitting.ht
 Bundles are created by `require` or `require.ensure` will be automatically loaded. Additionally, all the settings in
 `devlopment.config.js` and `production.config.js` for `optimizing common chunk` have been added to config files.
 
-```
+```javascript
   /*new webpack.optimize.CommonsChunkPlugin('common', 'common.bundle.js'),*/ // development.config.js
   /*new webpack.optimize.CommonsChunkPlugin('common', 'common-[chunkhash].bundle.js'),*/ // production.config.js
 ```
