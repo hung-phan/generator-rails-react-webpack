@@ -5,10 +5,10 @@ module ApplicationHelper
         manifest = Rails.configuration.webpack[:asset_manifest][bundle]
         bundle = manifest.instance_of?(Array) ? manifest[0] : manifest
 
-        "assets/#{bundle}"
+        "/assets/#{bundle}"
       else
         #"http://localhost:8080/assets/build/#{bundle}.bundle.js" # Hot module replacement
-        "assets/build/#{bundle}.bundle"
+        "/assets/build/#{bundle}.bundle"
       end
 
     "<script src='#{src}' type='text/javascript'></script>".html_safe
