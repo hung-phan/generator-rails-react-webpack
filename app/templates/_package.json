@@ -20,6 +20,7 @@
     "exports-loader": "*",
     "imports-loader": "*",
     "expose-loader": "*",
+    "bundle-loader": "*",
     "jquery": "*",
     "lodash": "*",<% if (includeSuperagent) { %>
     "superagent": "*",<% } %>
