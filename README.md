@@ -156,12 +156,15 @@ Refer to [HMR](https://github.com/gaearon/react-hot-loader) for detail implement
 Uncomment all `HMR` config in `development.config.js`.
 
 ```javascript
-  /*entry: {
+  entry: {
     main: [
       'webpack-dev-server/client?http://localhost:8080/assets/',
       'webpack/hot/only-dev-server'
     ]
-  },*/ // Hot Module Replacement
+  }, // Hot Module Replacement
+  output: {
+    publicPath: 'http://localhost:8080/assets/build/'
+  }, // Hot Module Replacement
   ...
   module: {
     loaders: [{
@@ -194,7 +197,7 @@ This config will concat to every entry with specify in this `development.config.
       './app/frontend/javascripts/main'
     ]
   }, // Hot Module Replacement
-  
+
 ```
 
 Then [start coding](#Start developing)

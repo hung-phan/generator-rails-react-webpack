@@ -11,6 +11,9 @@ module.exports = _.merge(defaultConfig, {
       'webpack/hot/only-dev-server'
     ]
   },*/ // Hot Module Replacement
+  /*output: {
+    publicPath: 'http://localhost:8080/assets/build/'
+  },*/ // Hot Module Replacement
   cache: true,
   debug: true,
   outputPathinfo: true,
