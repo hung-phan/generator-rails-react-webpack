@@ -29,7 +29,7 @@
   },
   "scripts": {
     "test": "jest",
-    "webpack-dev": "webpack-dev-server --config config/webpack/development.config.js --hot --progress --inline"
+    "webpack-dev": "webpack-dev-server --config config/webpack/development.config.js --progress --inline"
   },
   "jest": {
     "scriptPreprocessor": "./preprocessor.js"
