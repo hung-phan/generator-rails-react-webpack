@@ -33,7 +33,7 @@ group :development do
   gem 'meta_request'
 end
 # react jsx compile
-gem 'react-rails', '~> 1.0.0.pre', github: 'reactjs/react-rails'<% if (includeFontAwesome) { %>
+gem 'react-rails'<% if (includeFontAwesome) { %>
 # font awesome
 gem 'font-awesome-rails'<% } %><% if (includeGrape) { %>
 # grape api
