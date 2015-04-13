@@ -24,7 +24,7 @@ module.exports = {
       test: /.js$/,
       //exclude: /node_modules(?!.*(\/js-csp))/, // ignore node_modules except node_modules/js-csp
       exclude: /node_modules/,
-      loader: 'babel-loader?experimental&optional=runtime'
+      loader: 'babel-loader?optional=runtime'
     }]
   },
   plugins: [
