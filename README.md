@@ -254,6 +254,10 @@ add `--skip-active-record` option to your `rails new app --skip-active-record` c
 For using livereload utility, firstly, install [guard](https://github.com/guard/guard-livereload). Then, use [rack-livereload](https://github.com/johnbintz/rack-livereload)
 or install [LiveReload Safari/Chrome extension](http://feedback.livereload.com/knowledgebase/articles/86242-how-do-i-install-and-use-the-browser-extensions-)
 
+```bash
+$ bundle exec guard # to run the guard server and enjoy coding
+```
+
 ## Testing
 Test files are placed in the same folder with component.
 
@@ -268,10 +272,6 @@ if you need to in `package.json`
 
 ```bash
 npm test
-```
-
-```bash
-$ bundle exec guard # to run the guard server and enjoy coding
 ```
 ## Structure
 
