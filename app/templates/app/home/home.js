@@ -45,7 +45,7 @@ let Home  = React.createClass({
             <p>Modernizr is an open-source JavaScript library that helps you build the next generation of HTML5 and CSS3-powered websites.</p>
 
             <h4>ReactJs</h4>
-            <h1 onClick={this.clickMeUpdate}>{this.state.text}</h1>
+            <h1 className='clickMe' onClick={this.clickMeUpdate}>{this.state.text}</h1>
           </div>
           <div className="col-lg-6">
             <h4>Webpack</h4>

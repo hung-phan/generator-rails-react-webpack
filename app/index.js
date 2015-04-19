@@ -146,6 +146,7 @@ module.exports = yeoman.generators.Base.extend({
 
   copyTasks: function() {
     this.copy('_package.json', 'package.json');
+    this.copy('_compiler.js', 'compiler.js');
     this.copy('_bowerrc', '.bowerrc');
     this.copy('_gulpfile.js', 'gulpfile.js');
     this.directory('webpack', 'config/webpack');
@@ -231,6 +232,7 @@ module.exports = yeoman.generators.Base.extend({
     this.write(path, file);
     this.template('app/main.js', 'app/frontend/javascripts/main.js');
     this.template('app/home/home.js', 'app/frontend/javascripts/home/home.js');
+    this.copy('app/home/home-test.js', 'app/frontend/javascripts/home/home-test.js');
   },
 
   reactConfig: function() {
