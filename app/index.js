@@ -152,7 +152,6 @@ module.exports = yeoman.generators.Base.extend({
     this.copy('initializers/webpack.rb', 'config/initializers/webpack.rb');
     this.copy('tasks/webpack.rake', 'lib/tasks/webpack.rake');
     this.copy('helpers/application_helper.rb', 'app/helpers/application_helper.rb');
-    this.directory('__tests__', '__tests__');
   },
 
   npmInstall: function() {
