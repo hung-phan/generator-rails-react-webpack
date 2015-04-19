@@ -1,7 +1,7 @@
-module API
+module APIS
   module V1
     class PersonApi < Grape::API
-      include API::V1::Defaults
+      include APIS::V1::Defaults
 
       # GET /api/v1/people
       resource :people do

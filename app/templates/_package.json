@@ -4,7 +4,6 @@
     "del": "*",
     "gulp": "*",
     "gulp-util": "*",
-    "jest-cli": "*",
     "minimist": "*",
     "node-notifier": "*",
     "react-hot-loader": "*",
@@ -28,11 +27,7 @@
     "react-router": "*"
   },
   "scripts": {
-    "test": "jest",
     "webpack-dev": "webpack-dev-server --config config/webpack/development.config.js --progress --inline"
-  },
-  "jest": {
-    "scriptPreprocessor": "./preprocessor.js"
   },
   "license": "MIT",
   "engines": {

@@ -265,6 +265,11 @@ $ bundle exec guard # to run the guard server and enjoy coding
 ```
 application/
   |- app/
+  |  |- apis/
+  |  |  |- v1/
+  |  |  |  |- base.rb
+  |  |  |  |- person_api.rb
+  |  |  |- base.rb
   |  |- assets/
   |  |  |- images/
   |  |  |- javascripts/

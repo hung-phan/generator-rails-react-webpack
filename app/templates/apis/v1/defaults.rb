@@ -1,4 +1,4 @@
-module API
+module APIS
   module V1
     module Defaults
       # if you're using Grape outside of Rails, you'll have to use Module#included hook
