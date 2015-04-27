@@ -234,8 +234,6 @@ $ rails server
 ```
 
 ## Assets compile
-Compile your assets before deploying to production server
-
 ```bash
 $ rake assets:precompile RAILS_ENV=production
 ```
