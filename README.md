@@ -238,7 +238,21 @@ Compile your assets before deploying to production server
 
 ```bash
 $ rake assets:precompile RAILS_ENV=production
-$ rake webpack:compile
+```
+
+## Heroku deploy
+Configure Heroku to use ddollar's multi-buildpack:
+
+```bash
+$ heroku config:add BUILDPACK_URL=https://github.com/ddollar/heroku-buildpack-multi.git
+```
+
+Add the heroku-nodejs buildpack and heroku-ruby buildpack to .buildpacks:
+
+```
+$ cat .buildpacks
+https://github.com/heroku/heroku-buildpack-nodejs
+https://github.com/heroku/heroku-buildpack-ruby
 ```
 
 ## Options
