@@ -239,13 +239,13 @@ $ rake assets:precompile RAILS_ENV=production
 ```
 
 ## Heroku deploy
-Configure Heroku to use ddollar's multi-buildpack:
+Configure Heroku to use `ddollar's multi-buildpack`:
 
 ```bash
 $ heroku config:add BUILDPACK_URL=https://github.com/ddollar/heroku-buildpack-multi.git
 ```
 
-Add the heroku-nodejs buildpack and heroku-ruby buildpack to .buildpacks:
+Add the `heroku-nodejs buildpack` and `heroku-ruby buildpack` to .buildpacks:
 
 ```
 $ cat .buildpacks
