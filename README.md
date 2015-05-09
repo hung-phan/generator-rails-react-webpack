@@ -212,9 +212,9 @@ Then [start coding](#Start developing)
 ### Available gulp task
 
 ```bash
-$ guld javascript:clean # remove the build folder placed at 'app/assets/javascripts/build'
-$ guld javascript:dev # watch over changes for multiple js bundle
-$ guld javascript:build # should use this for testing only, please read Assets compile
+$ gulp javascript:clean # remove the build folder placed at 'app/assets/javascripts/build'
+$ gulp javascript:dev # watch over changes for multiple js bundle
+$ gulp javascript:build # should use this for testing only, please read Assets compile
 ```
 
 ## Start developing
