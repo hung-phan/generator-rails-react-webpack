@@ -175,7 +175,7 @@ Uncomment all `HMR` config in `development.config.js`.
     }]
   }, // Hot Module Replacement
   plugins: [
-    new webpack.HotModuleReplacementPlugin(), new webpack.NoErrorsPlugin(), // Hot Module Replacement
+    new webpack.NoErrorsPlugin(), // Hot Module Replacement
     ...
   ]
 ```
