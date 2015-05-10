@@ -27,7 +27,7 @@ module.exports = _.merge(defaultConfig, {
     }]
   },*/ // Hot Module Replacement
   plugins: [
-    /*new webpack.HotModuleReplacementPlugin(), new webpack.NoErrorsPlugin(),*/ // Hot Module Replacement
+    /*new webpack.NoErrorsPlugin(),*/ // Hot Module Replacement
     /*new webpack.optimize.CommonsChunkPlugin('common', 'common.bundle.js'),*/ // Code splitting
     new webpack.DefinePlugin({ 'process.env.NODE_ENV': '"development"', '__DEV__': true })
   ]
