@@ -92,7 +92,7 @@ Manage built tools and application dependencies
       cache: true,
       debug: true,
       outputPathinfo: true,
-      devtool: '#inline-source-map',
+      devtool: 'source-map',
       plugins: [
         new webpack.DefinePlugin({ 'process.env.NODE_ENV': '"development"', '__DEV__': true })
       ]
@@ -102,7 +102,7 @@ Manage built tools and application dependencies
 
   ```javascript
     module.exports = _.merge(defaultConfig, {
-      devtool: 'source-map',
+      devtool: false,
       output: {
         path: './public/assets',
         publicPath: '/assets/',
