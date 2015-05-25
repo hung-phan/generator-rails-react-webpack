@@ -17,7 +17,7 @@ module.exports = _.merge(defaultConfig, {
   cache: true,
   debug: true,
   outputPathinfo: true,
-  devtool: '#inline-source-map',
+  devtool: 'source-map',
   /*module: {
     loaders: [{
       test: /.js$/,

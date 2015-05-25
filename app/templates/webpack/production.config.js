@@ -6,7 +6,7 @@ var _                   = require('lodash'),
     webpack             = require('webpack');
 
 module.exports = _.merge(defaultConfig, {
-  devtool: 'source-map',
+  devtool: false,
   output: {
     path: './public/assets',
     publicPath: '/assets/',
