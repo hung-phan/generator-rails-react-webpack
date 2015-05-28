@@ -30,7 +30,7 @@
     "react-router": "*"
   },
   "scripts": {
-    "test": "mocha --watch --compilers js:compiler.js app/frontend/javascripts/**/*-test.js",
+    "test": "mocha --watch --compilers js:compiler.js 'app/frontend/javascripts/**/*-test.js'",
     "webpack-dev": "webpack-dev-server --config config/webpack/development.config.js --hot --progress --inline"
   },
   "license": "MIT",
