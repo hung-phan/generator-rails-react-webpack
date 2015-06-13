@@ -283,8 +283,13 @@ Use iojs instead of node to run mocha test (See more [here](https://github.com/t
 if you need to in `package.json`
 
 ```bash
-npm test
+npm test # unit test
 ```
+
+```bash
+npm run test-converage # generate test coverage using istanbul
+```
+
 ## Structure
 
 ```
