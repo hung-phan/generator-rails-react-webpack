@@ -21,8 +21,6 @@ group :development, :test do
   gem 'shoulda-matchers' # https://github.com/thoughtbot/shoulda-matchers
   gem 'shoulda-callback-matchers', '~> 1.0'
   gem 'spring-commands-rspec'
-  gem 'jasmine'
-  gem 'jasmine-rails'
   gem 'mailcatcher'
   gem 'did_you_mean'<% if (includeLiveReload) { %>
   gem 'guard-livereload', require: false<% } %>
