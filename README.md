@@ -40,7 +40,7 @@ Answer 'Yes' to all 'Overwrite' actions. Then, update 'config/database.yml' if y
 All javascript modules are placed in `app/frontend/javascripts` folder, which will be compiled into `app/assets/javascript/build`
 folder. In addition, `app/assets/javascript/build` is appended to `.gitignore` (Webpack built bundles will be ignored and rebuilt every deployment).
 
-Control you application assets via [webpack](http://webpack.github.io/docs/) or [sprockets](https://github.com/sstephenson/sprockets).
+Control your application assets via [webpack](http://webpack.github.io/docs/) or [sprockets](https://github.com/sstephenson/sprockets).
 However, for javascript files, prefer `webpack` over `sprockets` for the reason that those will run through loaders before getting
 serve at the browser.
 
