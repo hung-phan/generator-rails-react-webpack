@@ -285,6 +285,10 @@ module.exports = yeoman.generators.Base.extend({
     shell.exec("rails generate rspec:install");
   },
 
+  guardRspec: function() {
+    shell.exec("guard init rspec");
+  },
+
   defaultStylesheet: function() {
     console.log(magenta('Copy default.css.scss file'));
     this.template('app/default.css.scss', 'app/assets/stylesheets/default.css.scss');
