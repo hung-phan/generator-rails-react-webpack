@@ -306,12 +306,12 @@ module.exports = yeoman.generators.Base.extend({
   },
 
   copySpecs: function() {
-    this.copy('app/home/home-test.js', 'app/frontend/javascripts/home/home-test.js');
+    this.copy('spec/apis/person_spec.rb', 'spec/apis/person_spec.rb');
   },
 
   defaultStylesheet: function() {
     console.log(magenta('Copy default.css.scss file'));
-    this.copy('spec/apis/person_spec.rb', 'spec/apis/person_spec.rb');
+    this.template('app/default.css.scss', 'app/assets/stylesheets/default.css.scss');
   },
 
   stylesheets: function() {
