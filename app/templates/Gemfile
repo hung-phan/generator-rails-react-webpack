@@ -30,6 +30,9 @@ group :development do
   gem 'binding_of_caller'
   gem 'meta_request'
 end
+group :test do
+  gem 'airborne' # api test
+end
 # react jsx compile
 gem 'react-rails'<% if (includeFontAwesome) { %>
 # font awesome
