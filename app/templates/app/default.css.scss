@@ -93,39 +93,13 @@ $xs-large-screen:  1200px;
     ::-moz-selection{ background: $background; color: $color; text-shadow: none; }
 }
 
-@mixin bootstrap-column($name, $width) {
-  .col-xs-#{$name}, .col-sm-#{$name}, .col-md-#{$name}, .col-lg-#{$name} {
-    position: relative;
-    min-height: 1px;
-    padding-right: 10px;
-    padding-left: 10px;
-  }
+@mixin bootstrap-column($name, $percent-width) {
+  $grid-width: $grid-columns * $percent-width / 100;
 
-  .col-xs-#{$name} {
-    width: $width;
-    float: left;
-  }
-
-  /*Define extended grid system for bootstrap*/
-  @media (min-width: 768px) {
-    .col-sm-#{$name} {
-      width: $width;
-      float: left;
-    }
-  }
-  @media (min-width: 992px) {
-    .col-md-#{$name} {
-      width: $width;
-      float: left;
-    }
-  }
-  @media (min-width: 1200px) {
-    .col-lg-#{$name} {
-      width: $width;
-      float: left;
-    }
-  }
+  .col-lg-#{$name} { @include make-lg-column($grid-width); }
+  .col-md-#{$name} { @include make-md-column($grid-width); }
+  .col-sm-#{$name} { @include make-sm-column($grid-width); }
+  .col-xs-#{$name} { @include make-xs-column($grid-width); }
 }
 
-// use @include bootstrap-column(15, 20%);
-
+// use @include bootstrap-column(15, 20);
