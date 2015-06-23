@@ -294,7 +294,7 @@ module.exports = yeoman.generators.Base.extend({
     var path   = 'spec/rails_helper.rb',
         hook   = 'RSpec.configure do |config|\n',
         file   = this.readFileAsString(path),
-        insert = '  config.include RSpec::Rails::RequestExampleGroup, type: :request, file_path: /spec\/apis/\n' +
+        insert = '  config.include RSpec::Rails::RequestExampleGroup, type: :request, file_path: /spec\\/apis/\n' +
                  '  config.before(:suite) do\n' +
                  '    DatabaseCleaner.strategy = :transaction\n' +
                  '    DatabaseCleaner.clean_with(:truncation)\n' +
@@ -305,9 +305,13 @@ module.exports = yeoman.generators.Base.extend({
     }
   },
 
+  copySpecs: function() {
+    this.copy('app/home/home-test.js', 'app/frontend/javascripts/home/home-test.js');
+  },
+
   defaultStylesheet: function() {
     console.log(magenta('Copy default.css.scss file'));
-    this.template('app/default.css.scss', 'app/assets/stylesheets/default.css.scss');
+    this.copy('spec/apis/person_spec.rb', 'spec/apis/person_spec.rb');
   },
 
   stylesheets: function() {
