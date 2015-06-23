@@ -290,7 +290,7 @@ module.exports = yeoman.generators.Base.extend({
   },
 
   rspecHelper: function() {
-    //include config into config/application.rb
+    console.log(magenta('Update spec/rails_helper.rb for DatabaseCleaner and Grape api'));
     var path   = 'spec/rails_helper.rb',
         hook   = 'RSpec.configure do |config|\n',
         file   = this.readFileAsString(path),
