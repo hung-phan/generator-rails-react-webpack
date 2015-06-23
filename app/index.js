@@ -289,6 +289,22 @@ module.exports = yeoman.generators.Base.extend({
     shell.exec("guard init rspec");
   },
 
+  rspecHelper: function() {
+    //include config into config/application.rb
+    var path   = 'spec/rails_helper.rb',
+        hook   = 'RSpec.configure do |config|\n',
+        file   = this.readFileAsString(path),
+        insert = '  config.include RSpec::Rails::RequestExampleGroup, type: :request, file_path: /spec\/apis/\n' +
+                 '  config.before(:suite) do\n' +
+                 '    DatabaseCleaner.strategy = :transaction\n' +
+                 '    DatabaseCleaner.clean_with(:truncation)\n' +
+                 '  end\n';
+
+    if (file.indexOf(insert) === -1) {
+      this.write(path, file.replace(hook, hook + insert));
+    }
+  },
+
   defaultStylesheet: function() {
     console.log(magenta('Copy default.css.scss file'));
     this.template('app/default.css.scss', 'app/assets/stylesheets/default.css.scss');
