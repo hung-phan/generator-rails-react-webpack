@@ -326,7 +326,7 @@ application/
   |  |- initializers/
   |  |  |- *.rb
   |  |  |- webpack.rb # webpack manifest config
-  |  |- browserify/
+  |  |- webpack/
   |  |  |- config.json
   |  |  |- default.config.js
   |  |  |- development.config.js
