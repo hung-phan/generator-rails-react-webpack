@@ -226,6 +226,7 @@ module.exports = yeoman.generators.Base.extend({
                .replace("//= require jquery\n", '')
                .replace("//= require jquery_ujs\n", '')
                .replace("//= require_tree .",
+                        "//= require bootstrap\n" +
                         "//= require react_ujs\n");
 
 
