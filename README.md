@@ -306,12 +306,12 @@ application/
   |  |  |  |- build/
   |  |  |  |  |- page-module.bundle.js
   |  |  |  |- application.js
+  |  |  |- stylesheets/
+  |  |  |  |- application.css
   |  |- frontend/
   |  |  |- javascripts/
   |  |  |  |- <page-module-dependencies>/
   |  |  |  |- <page-module>.js
-  |  |  |- stylesheets/
-  |  |  |  |- application.css
   |  |- controllers/
   |  |- helpers/
   |  |- mailers/
