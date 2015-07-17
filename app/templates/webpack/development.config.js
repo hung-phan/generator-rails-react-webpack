@@ -32,8 +32,5 @@ module.exports = _.merge(defaultConfig, {
     new webpack.DefinePlugin({ 'process.env.NODE_ENV': '"development"', '__DEV__': true })
   ]
 }, function(obj1, obj2) {
-  // concats plugins
-  if (_.isArray(obj1) && _.isArray(obj2)) { return obj2.concat(obj1); }
-  // push entry into array for react hot dev
-  if (_.isString(obj1) && _.isArray(obj2)) { obj2.push(obj1); return obj2; }
+  return _.isArray(obj2) ? obj2.concat(obj1) : undefined;
 });

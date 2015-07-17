@@ -23,5 +23,5 @@ module.exports = _.merge(defaultConfig, {
     new webpack.optimize.UglifyJsPlugin()
   ]
 }, function(obj1, obj2) {
-  if (_.isArray(obj1)) { return obj1.concat(obj2); }
+  return _.isArray(obj2) ? obj2.concat(obj1) : undefined;
 });

@@ -1,15 +1,16 @@
 'use strict';
 
 var path    = require('path'),
-    webpack = require('webpack');
+    webpack = require('webpack'),
+    config  = require('./config.json');
 
 module.exports = {
   context: path.join(__dirname, '../', '../'),
   entry: {
-    main: './app/frontend/javascripts/main'
+    main: config.webpack.path + 'main'
   },
   output: {
-    path: './app/assets/javascripts/build',
+    path: config.webpack.build,
     publicPath: '/assets/build/',
     filename: '[name].bundle.js',
     chunkFilename: '[id].bundle.js'
