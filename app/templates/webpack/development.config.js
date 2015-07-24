@@ -7,8 +7,7 @@ var _             = require('lodash'),
 module.exports = _.merge(defaultConfig, {
   /*entry: {
     main: [
-      'webpack-dev-server/client?http://localhost:8080/assets/',
-      'webpack/hot/only-dev-server'
+      'webpack-dev-server/client?http://localhost:8080/assets/'
     ]
   },*/ // Hot Module Replacement
   /*output: {
@@ -18,6 +17,11 @@ module.exports = _.merge(defaultConfig, {
   debug: true,
   outputPathinfo: true,
   devtool: 'source-map',
+  /*devServer: {
+    contentBase: path.join(__dirname, './../../'),
+    hot: true,
+    inline: true
+  },*/ // Hot Module Replacement
   /*module: {
     loaders: [{
       test: /.js$/,
@@ -27,7 +31,7 @@ module.exports = _.merge(defaultConfig, {
     }]
   },*/ // Hot Module Replacement
   plugins: [
-    /*new webpack.NoErrorsPlugin(),*/ // Hot Module Replacement
+    /*new webpack.HotModuleReplacementPlugin(), new webpack.NoErrorsPlugin(),*/ // Hot Module Replacement
     /*new webpack.optimize.CommonsChunkPlugin('common', 'common.bundle.js'),*/ // Code splitting
     new webpack.DefinePlugin({ 'process.env.NODE_ENV': '"development"', '__DEV__': true })
   ]

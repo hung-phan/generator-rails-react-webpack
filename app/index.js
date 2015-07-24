@@ -148,6 +148,7 @@ module.exports = yeoman.generators.Base.extend({
     this.copy('_package.json', 'package.json');
     this.copy('_compiler.js', 'compiler.js');
     this.copy('_bowerrc', '.bowerrc');
+    this.copy('_babelrc', '.babelrc');
     this.copy('_gulpfile.js', 'gulpfile.js');
     this.directory('webpack', 'config/webpack');
     this.copy('initializers/webpack.rb', 'config/initializers/webpack.rb');

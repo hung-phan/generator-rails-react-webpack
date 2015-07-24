@@ -158,12 +158,16 @@ Uncomment all `HMR` config in `development.config.js`.
 ```javascript
   entry: {
     main: [
-      'webpack-dev-server/client?http://localhost:8080/assets/',
-      'webpack/hot/only-dev-server'
+      'webpack-dev-server/client?http://localhost:8080/assets/'
     ]
   }, // Hot Module Replacement
   output: {
     publicPath: 'http://localhost:8080/assets/build/'
+  }, // Hot Module Replacement
+  devServer: {
+    contentBase: path.join(__dirname, './../../'),
+    hot: true,
+    inline: true
   }, // Hot Module Replacement
   ...
   module: {
@@ -175,7 +179,7 @@ Uncomment all `HMR` config in `development.config.js`.
     }]
   }, // Hot Module Replacement
   plugins: [
-    new webpack.NoErrorsPlugin(), // Hot Module Replacement
+    new webpack.HotModuleReplacementPlugin(), new webpack.NoErrorsPlugin(), // Hot Module Replacement
     ...
   ]
 ```
@@ -193,7 +197,7 @@ This config will concat to every entry with specify in this `development.config.
   entry: {
     main: [
       'webpack-dev-server/client?http://localhost:8080/assets/',
-      'webpack/hot/only-dev-server',
+      'webpack/hot/dev-server',
       './app/frontend/javascripts/main'
     ]
   }, // Hot Module Replacement
@@ -205,6 +209,7 @@ Then [start coding](#Start developing)
 ### Current transformation applied
 
 - [babel-loader](https://github.com/babel/babel-loader)
+- [babel-plugin-typecheck](https://github.com/codemix/babel-plugin-typecheck)
 - [expose-loader](https://github.com/webpack/expose-loader)
 - [imports-loader](https://github.com/webpack/imports-loader)
 - [exports-loader](https://github.com/webpack/exports-loader)

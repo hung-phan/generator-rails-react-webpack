@@ -33,7 +33,7 @@
   "scripts": {
     "test": "mocha --watch --compilers js:compiler.js 'app/frontend/javascripts/**/*-test.js'",
     "test-coverage": "istanbul cover node_modules/.bin/_mocha -- --compilers js:compiler.js 'app/frontend/javascripts/**/*-test.js'",
-    "webpack-dev": "webpack-dev-server --config config/webpack/development.config.js --hot --progress --inline"
+    "webpack-dev": "webpack-dev-server --config config/webpack/development.config.js"
   },
   "license": "MIT",
   "engines": {

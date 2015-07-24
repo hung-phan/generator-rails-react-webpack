@@ -1,21 +1,25 @@
 'use strict';
 
-// lib
-let React = require('react/addons');
+import React from 'react/addons';
 
-// component
-let Home  = React.createClass({
-  getInitialState() {
-    return {
+class Home extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
       text: 'Click Me!'
     };
-  },
+
+    this.clickMeUpdate = this.clickMeUpdate.bind(this);
+  }
+
   clickMeUpdate(event) {
     this.setState({
       text: this.state.text.split('').reverse().join('')
     });
-  },
-  render() {
+  }
+
+  render(): Function {
     return (
       <div className="container">
         <div className="header">
@@ -60,6 +64,6 @@ let Home  = React.createClass({
       </div>
     );
   }
-})
+}
 
-module.exports = Home;
+export default Home;

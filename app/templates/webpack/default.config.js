@@ -5,7 +5,7 @@ var path    = require('path'),
     config  = require('./config.json');
 
 module.exports = {
-  context: path.join(__dirname, '../', '../'),
+  context: path.join(__dirname, './../../'),
   entry: {
     main: config.webpack.path + 'main'
   },
