@@ -20,6 +20,7 @@
     "babel-core": "*",
     "babel-loader": "*",
     "babel-runtime": "*",
+    "babel-plugin-typecheck": "*",
     "exports-loader": "*",
     "imports-loader": "*",
     "expose-loader": "*",

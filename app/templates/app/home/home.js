@@ -19,7 +19,7 @@ class Home extends React.Component {
     });
   }
 
-  render(): Function {
+  render() {
     return (
       <div className="container">
         <div className="header">

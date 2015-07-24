@@ -1,6 +1,7 @@
 'use strict';
 
 var _             = require('lodash'),
+    path          = require('path'),
     defaultConfig = require('./default.config'),
     webpack       = require('webpack');
 

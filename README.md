@@ -363,6 +363,9 @@ application/
   |- Rakefile
   |- README.rdoc
 ```
+## Changelog
+0.3 -> 0.4: Add [babel-plugin-typecheck](https://github.com/codemix/babel-plugin-typecheck), fixed redundant event listeners from
+`dev-server` and `only-dev-server`, and update code to es6
 
 ## Acknowledgement
 
