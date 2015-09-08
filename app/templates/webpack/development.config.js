@@ -7,9 +7,7 @@ var _             = require('lodash'),
 
 module.exports = _.merge(defaultConfig, {
   /*entry: {
-    main: [
-      'webpack-dev-server/client?http://localhost:8080/assets/'
-    ]
+    main: []
   },*/ // Hot Module Replacement
   /*output: {
     publicPath: 'http://localhost:8080/assets/build/'
@@ -22,14 +20,6 @@ module.exports = _.merge(defaultConfig, {
     contentBase: path.join(__dirname, './../../'),
     hot: true,
     inline: true
-  },*/ // Hot Module Replacement
-  /*module: {
-    loaders: [{
-      test: /.js$/,
-      //exclude: /node_modules(?!.*(\/js-csp))/, // ignore node_modules except node_modules/js-csp
-      exclude: /node_modules/,
-      loader: 'react-hot'
-    }]
   },*/ // Hot Module Replacement
   plugins: [
     /*new webpack.HotModuleReplacementPlugin(), new webpack.NoErrorsPlugin(),*/ // Hot Module Replacement

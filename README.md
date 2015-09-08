@@ -157,9 +157,7 @@ Uncomment all `HMR` config in `development.config.js`.
 
 ```javascript
   entry: {
-    main: [
-      'webpack-dev-server/client?http://localhost:8080/assets/'
-    ]
+    main: []
   }, // Hot Module Replacement
   output: {
     publicPath: 'http://localhost:8080/assets/build/'
@@ -170,14 +168,6 @@ Uncomment all `HMR` config in `development.config.js`.
     inline: true
   }, // Hot Module Replacement
   ...
-  module: {
-    loaders: [{
-      test: /.js$/,
-      //exclude: /node_modules(?!.*(\/js-csp))/, // ignore node_modules except node_modules/js-csp
-      exclude: /node_modules/,
-      loader: 'react-hot'
-    }]
-  }, // Hot Module Replacement
   plugins: [
     new webpack.HotModuleReplacementPlugin(), new webpack.NoErrorsPlugin(), // Hot Module Replacement
     ...
@@ -196,7 +186,6 @@ This config will concat to every entry with specify in this `development.config.
 ```javascript
   entry: {
     main: [
-      'webpack-dev-server/client?http://localhost:8080/assets/',
       'webpack/hot/dev-server',
       './app/frontend/javascripts/main'
     ]
@@ -234,7 +223,7 @@ $ rails server
 For [Hot Module Replacement](http://webpack.github.io/docs/hot-module-replacement-with-webpack.html), update `config/webpack/development.config.js` and run these command instead:
 
 ```bash
-$ npm run webpack-dev
+$ npm run dev
 $ rails server
 ```
 
