@@ -9,6 +9,7 @@ var config   = require('./config.json');
 var del      = require('del');
 var gulp     = require('gulp');
 var gutil    = require('gulp-util');
+var env      = require('gulp-env');
 var minimist = require('minimist');
 var webpack  = require('webpack');
 var notifier = require('node-notifier');
@@ -24,7 +25,7 @@ gulp.task('javascript:clean', function() {
 });
 
 // build task
-gulp.task('javascript:build', ['javascript:clean'], function(cb) {
+gulp.task('javascript:build', ['javascript:clean', 'set-production-env'], function(cb) {
   var started = false,
       bundler = webpack(require('./production.config.js')),
       bundle  = function(err, stats) {
@@ -40,4 +41,12 @@ gulp.task('javascript:build', ['javascript:clean'], function(cb) {
       };
 
   bundler.run(bundle);
+});
+
+gulp.task('set-production-env', function() {
+  env({
+    vars: {
+      NODE_ENV: 'production'
+    }
+  });
 });

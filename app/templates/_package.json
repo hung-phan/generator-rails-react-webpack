@@ -9,6 +9,7 @@
     "jsdom": "^7.0.2",
     "gulp": "*",
     "gulp-util": "^3.0.7",
+    "gulp-env": "^0.2.0",
     "minimist": "*",
     "nock": "^2.17.0",
     "mocha": "^2.3.3",
