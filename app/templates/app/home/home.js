@@ -1,6 +1,4 @@
-'use strict';
-
-import React from 'react/addons';
+import React from 'react';
 
 class Home extends React.Component {
   constructor(props) {
@@ -10,7 +8,7 @@ class Home extends React.Component {
       text: 'Click Me!'
     };
 
-    this.clickMeUpdate = this.clickMeUpdate.bind(this);
+    this.clickMeUpdate = ::this.clickMeUpdate;
   }
 
   clickMeUpdate(event) {

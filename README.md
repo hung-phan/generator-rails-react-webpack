@@ -4,6 +4,10 @@
 
 [![NPM](https://nodei.co/npm/generator-rails-react-webpack.png?downloads=true)](https://nodei.co/npm/generator-rails-react-webpack/)
 
+## Related project - Consider using [koa-react-isomorphic](https://github.com/hung-phan/koa-react-isomorphic)
+
+Consider to see koa-react-isomorphic project for testing component and [Redux](https://github.com/rackt/redux) usage
+
 ## Getting Started
 
 To install `generator-rails-react-webpack` from npm, run:
@@ -84,16 +88,27 @@ Manage built tools and application dependencies
       },
     };
   ```
-- `development.config.js`: contains development config for webpack. For advance usage, [Hot Module Replacement](#Hot Module Replacement), and
-  [Code splitting](#Code splitting).
+- `development.config.js`: contains development config for webpack. For advance usage, [Code splitting](#Code splitting).
 
   ```javascript
     module.exports = _.merge(defaultConfig, {
+      entry: {
+        main: []
+      },
+      output: {
+        publicPath: 'http://localhost:8080/assets/build/'
+      },
       cache: true,
       debug: true,
       outputPathinfo: true,
       devtool: 'source-map',
+      devServer: {
+        contentBase: path.join(__dirname, './../../'),
+        hot: true,
+        inline: true
+      },
       plugins: [
+        new webpack.HotModuleReplacementPlugin(), new webpack.NoErrorsPlugin(), // Hot Module Replacement
         new webpack.DefinePlugin({ 'process.env.NODE_ENV': '"development"', '__DEV__': true })
       ]
       ...
@@ -121,14 +136,14 @@ Manage built tools and application dependencies
 - `javascript-build.js`: defines javascript built tasks.
 
   ```javascript
-    var _        = require('lodash'),
-        config   = require('./config.json'),
-        del      = require('del'),
-        gulp     = require('gulp'),
-        ...;
+    var _        = require('lodash');
+    var config   = require('./config.json');
+    var del      = require('del');
+    var gulp     = require('gulp');
+    var gutil    = require('gulp-util');
+    ...
 
     gulp.task('javascript:clean', function () { ... });
-    gulp.task('javascript:dev', function () { ... });
     gulp.task('javascript:build', function () { ... });
   ```
 
@@ -153,34 +168,6 @@ Uncomment those and add this tag `<%= webpack_bundle_tag 'common' %>` before you
 ### Hot Module Replacement
 
 Refer to [HMR](https://github.com/gaearon/react-hot-loader) for detail implementations, only for `development.config.js`.
-Uncomment all `HMR` config in `development.config.js`.
-
-```javascript
-  entry: {
-    main: []
-  }, // Hot Module Replacement
-  output: {
-    publicPath: 'http://localhost:8080/assets/build/'
-  }, // Hot Module Replacement
-  devServer: {
-    contentBase: path.join(__dirname, './../../'),
-    hot: true,
-    inline: true
-  }, // Hot Module Replacement
-  ...
-  plugins: [
-    new webpack.HotModuleReplacementPlugin(), new webpack.NoErrorsPlugin(), // Hot Module Replacement
-    ...
-  ]
-```
-
-And `app/helpers/application_helper.rb`
-
-```ruby
-  "http://localhost:8080/assets/build/#{bundle}.bundle.js" # Hot module replacement
-  # "assets/build/#{bundle}.bundle"
-```
-
 This config will concat to every entry with specify in this `development.config.js`. The result will be like:
 
 ```javascript
@@ -189,8 +176,7 @@ This config will concat to every entry with specify in this `development.config.
       'webpack/hot/dev-server',
       './app/frontend/javascripts/main'
     ]
-  }, // Hot Module Replacement
-
+  },
 ```
 
 Then [start coding](#Start developing)
@@ -207,20 +193,12 @@ Then [start coding](#Start developing)
 
 ```bash
 $ gulp javascript:clean # remove the build folder placed at 'app/assets/javascripts/build'
-$ gulp javascript:dev # watch over changes for multiple js bundle
 $ gulp javascript:build # should use this for testing only, please read Assets compile
 ```
 
 ## Start developing
 
 Run these commands, and start coding
-
-```bash
-$ gulp javascript:dev
-$ rails server
-```
-
-For [Hot Module Replacement](http://webpack.github.io/docs/hot-module-replacement-with-webpack.html), update `config/webpack/development.config.js` and run these command instead:
 
 ```bash
 $ npm run dev

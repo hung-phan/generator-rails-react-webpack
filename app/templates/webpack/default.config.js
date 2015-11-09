@@ -1,8 +1,8 @@
 'use strict';
 
-var path    = require('path'),
-    webpack = require('webpack'),
-    config  = require('./config.json');
+var path    = require('path');
+var webpack = require('webpack');
+var config  = require('./config.json');
 
 module.exports = {
   context: path.join(__dirname, './../../'),
@@ -21,12 +21,14 @@ module.exports = {
     extensions: ['', '.js']
   },
   module: {
-    loaders: [{
-      test: /.js$/,
-      //exclude: /node_modules(?!.*(\/js-csp))/, // ignore node_modules except node_modules/js-csp
-      exclude: /node_modules/,
-      loader: 'babel-loader?optional=runtime'
-    }]
+    loaders: [
+      {
+        test: /.js$/,
+        //exclude: /node_modules(?!.*(\/js-csp))/, // ignore node_modules except node_modules/js-csp
+        exclude: /node_modules/,
+        loader: 'babel-loader'
+      }
+    ]
   },
   plugins: [
     new webpack.optimize.AggressiveMergingPlugin(),

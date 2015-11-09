@@ -76,9 +76,9 @@ module.exports = yeoman.generators.Base.extend({
       name: 'jsFile',
       message: 'What js library would you like to include?',
       choices: [
-        { name: 'Lodash.js'                      , value: 'includeLodash'      , checked: true } ,
-        { name: 'REST superagent by visionmedia' , value: 'includeSuperagent'  , checked: true } ,
-        { name: 'Modernizr'                      , value: 'includeModernizr'   , checked: true }
+        { name: 'lodash.js'        , value: 'includeLodash'          , checked: true } ,
+        { name: 'isomorphic-fetch' , value: 'includeIsomorphicFetch' , checked: true } ,
+        { name: 'Modernizr'        , value: 'includeModernizr'       , checked: true }
       ]
     }];
 
@@ -86,9 +86,9 @@ module.exports = yeoman.generators.Base.extend({
       function includeJS(js) { return props.jsFile.indexOf(js) !== -1; }
 
       // JS
-      this.includeLodash      = includeJS('includeLodash');
-      this.includeSuperagent  = includeJS('includeSuperagent');
-      this.includeModernizr   = includeJS('includeModernizr');
+      this.includeLodash          = includeJS('includeLodash');
+      this.includeIsomorphicFetch = includeJS('includeIsomorphicFetch');
+      this.includeModernizr       = includeJS('includeModernizr');
       cb();
     }.bind(this));
   },
@@ -230,11 +230,12 @@ module.exports = yeoman.generators.Base.extend({
                         "//= require bootstrap\n" +
                         "//= require react_ujs\n");
 
-
     this.write(path, file);
     this.template('app/main.js', 'app/frontend/javascripts/main.js');
+    this.copy('app/routes.js', 'app/frontend/javascripts/routes.js');
     this.template('app/home/home.js', 'app/frontend/javascripts/home/home.js');
     this.copy('app/home/home-test.js', 'app/frontend/javascripts/home/home-test.js');
+    this.directory('app/helpers', 'app/frontend/javascripts/helpers');
   },
 
   reactConfig: function() {

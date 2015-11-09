@@ -7,8 +7,7 @@ module ApplicationHelper
 
         "/assets/#{bundle}"
       else
-        #"http://localhost:8080/assets/build/#{bundle}.bundle.js" # Hot module replacement
-        "/assets/build/#{bundle}.bundle"
+        "http://localhost:8080/assets/build/#{bundle}.bundle.js" # Hot module replacement
       end
 
     "<script src='#{src}' type='text/javascript'></script>".html_safe
@@ -19,4 +18,3 @@ module ApplicationHelper
     javascript_tag "window.webpackManifest = #{Rails.configuration.webpack[:common_manifest].to_json}"
   end
 end
-

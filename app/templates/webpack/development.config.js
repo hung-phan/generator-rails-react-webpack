@@ -1,28 +1,28 @@
 'use strict';
 
-var _             = require('lodash'),
-    path          = require('path'),
-    defaultConfig = require('./default.config'),
-    webpack       = require('webpack');
+var _             = require('lodash');
+var path          = require('path');
+var defaultConfig = require('./default.config');
+var webpack       = require('webpack');
 
 module.exports = _.merge(defaultConfig, {
-  /*entry: {
+  entry: {
     main: []
-  },*/ // Hot Module Replacement
-  /*output: {
+  },
+  output: {
     publicPath: 'http://localhost:8080/assets/build/'
-  },*/ // Hot Module Replacement
+  },
   cache: true,
   debug: true,
   outputPathinfo: true,
   devtool: 'source-map',
-  /*devServer: {
+  devServer: {
     contentBase: path.join(__dirname, './../../'),
     hot: true,
     inline: true
-  },*/ // Hot Module Replacement
+  },
   plugins: [
-    /*new webpack.HotModuleReplacementPlugin(), new webpack.NoErrorsPlugin(),*/ // Hot Module Replacement
+    new webpack.HotModuleReplacementPlugin(), new webpack.NoErrorsPlugin(), // Hot Module Replacement
     /*new webpack.optimize.CommonsChunkPlugin('common', 'common.bundle.js'),*/ // Code splitting
     new webpack.DefinePlugin({ 'process.env.NODE_ENV': '"development"', '__DEV__': true })
   ]

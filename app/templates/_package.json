@@ -1,46 +1,56 @@
 {
   "name": "<%= _.slugify(appname) %>",
   "devDependencies": {
-    "del": "*",
+    "babel-plugin-react-transform": "^1.1.1",
+    "chai": "^3.4.0",
+    "co-mocha": "^1.1.2",
+    "co-supertest": "0.0.10",
+    "istanbul": "^0.4.0",
+    "jsdom": "^7.0.2",
     "gulp": "*",
-    "gulp-util": "*",
+    "gulp-util": "^3.0.7",
     "minimist": "*",
-    "node-notifier": "*",
-    "jsdom": "*",
-    "mocha": "*",
-    "istanbul": "*",
-    "chai": "*",
-    "babel-plugin-react-transform": "*",
-    "react-transform-catch-errors": "*",
-    "react-transform-webpack-hmr": "*",
-    "redbox-react": "*",
-    "webpack-dev-server": "*"
+    "nock": "^2.17.0",
+    "mocha": "^2.3.3",
+    "react-addons-test-utils": "^0.14.1",
+    "react-transform-catch-errors": "^1.0.0",
+    "react-transform-hmr": "^1.0.1",
+    "redbox-react": "^1.1.1",
+    "require-subvert": "^0.1.0",
+    "sinon": "^1.17.2",
+    "supertest": "^1.1.0"
   },
   "dependencies": {
-    "webpack": "*",
-    "chunk-manifest-webpack-plugin": "*",
-    "babel": "*",
-    "babel-core": "*",
-    "babel-loader": "*",
-    "babel-runtime": "*",
-    "babel-plugin-typecheck": "*",
-    "exports-loader": "*",
-    "imports-loader": "*",
-    "expose-loader": "*",
+    "del": "^2.0.2",
+    "webpack": "^1.12.2",
+    "webpack-dev-server": "^1.12.1",
+    "chunk-manifest-webpack-plugin": "0.0.1",
+    "babel": "^5.8.29",
+    "babel-core": "^5.8.29",
+    "babel-loader": "^5.3.2",
+    "babel-plugin-react-autoprefix": "^0.2.6",
+    "babel-runtime": "^5.8.29",
+    "babel-plugin-typecheck": "^2.0.0",
     "bundle-loader": "*",
-    "jquery": "*",
-    "lodash": "*",<% if (includeSuperagent) { %>
-    "superagent": "*",<% } %>
-    "react": "*",
-    "react-router": "*"
+    "exports-loader": "*",
+    "expose-loader": "*",
+    "imports-loader": "*",<% if (includeIsomorphicFetch) { %>
+    "isomorphic-fetch": "*",<% } %>
+    "history": "^1.13.0",
+    "jquery": "^2.1.4",
+    "lodash": "^3.10.1",
+    "node-notifier": "^4.3.1",
+    "react": "^0.14.1",
+    "react-dom": "^0.14.1",
+    "react-router": "^1.0.0-rc3"
   },
   "scripts": {
-    "test": "NODE_ENV=test mocha --watch --compilers js:compiler.js 'app/frontend/javascripts/**/*-test.js'",
-    "test-coverage": "istanbul cover node_modules/.bin/_mocha -- --compilers js:compiler.js 'app/frontend/javascripts/**/*-test.js'",
+    "test": "NODE_ENV=test mocha --watch --compilers js:compiler.js --require co-mocha 'app/frontend/javascripts/**/*-test.js'",
+    "test-coverage": "istanbul cover node_modules/.bin/_mocha -- --compilers js:compiler.js --require co-mocha 'app/frontend/javascripts/**/*-test.js'",
     "dev": "NODE_ENV=development webpack-dev-server --config config/webpack/development.config.js"
   },
   "license": "MIT",
   "engines": {
-    "node": ">= 0.10"
+    "node": ">= 4.1.0"
   }
 }

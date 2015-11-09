@@ -1,21 +1,12 @@
-'use strict';
-
 // expose jQuery for jquery_ujs and React for react_ujs
-require('expose?jQuery!expose?$!jquery');
-require('expose?React!react/addons');
+import 'expose?React!react';
+import 'expose?jQuery!expose?$!jquery';
 
-import $      from 'jquery';
-import React  from 'react/addons';
-import Router from 'react-router';
-import Home   from './home/home';
+import $ from 'jquery';
+import React from 'react';
+import ReactDOM from 'react-dom';
+import routes from './routes';
 
-$(document).ready(function() {
-  // define routing
-  const routes = (
-    <Router.Route name='main_page' path='/' handler={Home}></Router.Route>
-  );
-
-  Router.run(routes, Router.HashLocation, function(Handler) {
-    React.render(React.createFactory(Handler)(), document.getElementById('route'));
-  });
+$(document).ready(() => {
+  ReactDOM.render(<div>{routes}</div>, document.getElementById('route'));
 });
