@@ -4,19 +4,16 @@
  * Development config
  */
 
-var _        = require('lodash');
-var config   = require('./config.json');
-var del      = require('del');
-var gulp     = require('gulp');
-var gutil    = require('gulp-util');
-var env      = require('gulp-env');
-var minimist = require('minimist');
-var webpack  = require('webpack');
-var notifier = require('node-notifier');
+const config = require('./config.json');
+const del = require('del');
+const gulp = require('gulp');
+const gutil = require('gulp-util');
+const env = require('gulp-env');
+const webpack = require('webpack');
 
 // clean task
-gulp.task('javascript:clean', function() {
-  del([config.webpack.build], function(err, paths) {
+gulp.task('javascript:clean', () => {
+  del([config.webpack.build], (err, paths) => {
     gutil.log(
       'Deleted files/folders:\n',
       gutil.colors.cyan(paths.join('\n'))
@@ -25,25 +22,24 @@ gulp.task('javascript:clean', function() {
 });
 
 // build task
-gulp.task('javascript:build', ['javascript:clean', 'set-production-env'], function(cb) {
-  var started = false,
-      bundler = webpack(require('./production.config.js')),
-      bundle  = function(err, stats) {
-        if (err) {
-          notifier.notify({ message: 'Error: ' + err.message });
-          throw new gutil.PluginError('webpack', err);
-        }
-        gutil.log('[webpack]', stats.toString({colors: true}));
-        if (!started) {
-          started = true;
-          cb();
-        }
-      };
+gulp.task('javascript:build', ['javascript:clean', 'set-production-env'], (cb) => {
+  let started = false;
+  const bundler = webpack(require('./production.config.js'));
+  const bundle = (err, stats) => {
+    if (err) {
+      throw new gutil.PluginError('webpack', err);
+    }
+    gutil.log('[webpack]', stats.toString({ colors: true }));
+    if (!started) {
+      started = true;
+      cb();
+    }
+  };
 
   bundler.run(bundle);
 });
 
-gulp.task('set-production-env', function() {
+gulp.task('set-production-env', () => {
   env({
     vars: {
       NODE_ENV: 'production'

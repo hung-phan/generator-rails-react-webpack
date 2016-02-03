@@ -149,6 +149,7 @@ module.exports = yeoman.generators.Base.extend({
     this.copy('_compiler.js', 'compiler.js');
     this.copy('_bowerrc', '.bowerrc');
     this.copy('_babelrc', '.babelrc');
+    this.copy('_eslintrc', '.eslintrc');
     this.copy('_gulpfile.js', 'gulpfile.js');
     this.directory('webpack', 'config/webpack');
     this.copy('initializers/webpack.rb', 'config/initializers/webpack.rb');
@@ -235,6 +236,7 @@ module.exports = yeoman.generators.Base.extend({
     this.copy('app/routes.js', 'app/frontend/javascripts/routes.js');
     this.template('app/home/home.js', 'app/frontend/javascripts/home/home.js');
     this.copy('app/home/home-test.js', 'app/frontend/javascripts/home/home-test.js');
+    this.copy('app/home/style.css', 'app/frontend/javascripts/home/style.css');
     this.directory('app/helpers', 'app/frontend/javascripts/helpers');
   },
 

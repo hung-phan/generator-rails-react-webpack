@@ -1,6 +1,4 @@
-// expose jQuery for jquery_ujs and React for react_ujs
-import 'expose?React!react';
-import 'expose?jQuery!expose?$!jquery';
+import 'babel-polyfill';
 
 import $ from 'jquery';
 import React from 'react';
@@ -9,4 +7,11 @@ import routes from './routes';
 
 $(document).ready(() => {
   ReactDOM.render(<div>{routes}</div>, document.getElementById('route'));
+});
+
+// expose jQuery for jquery_ujs and React for react_ujs
+Object.assign(window, {
+  $,
+  jQuery: $,
+  React
 });

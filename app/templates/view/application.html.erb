@@ -2,16 +2,16 @@
 <html>
 <head>
   <title><%= _.slugify(appname) %></title>
-  <%%= stylesheet_link_tag    'application', media: 'all' %>
+  <%%= stylesheet_link_tag 'application', media: 'all' %>
+  <%%= webpack_css_tag 'main.css' %>
   <%%= csrf_meta_tags %>
 </head>
 <body>
   <%%= yield %>
 
-  <%%= webpack_manifest_script %><% if (includeModernizr) { %> 
+  <%%= webpack_manifest_script %><% if (includeModernizr) { %>
   <%%= javascript_include_tag 'modernizr' %><% } %>
-  <%%= webpack_bundle_tag 'main' %>
+  <%%= webpack_js_tag 'main.js' %>
   <%%= javascript_include_tag 'application' %>
 </body>
 </html>
-
