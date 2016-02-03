@@ -8,6 +8,9 @@
 
 Consider to see koa-react-isomorphic project for testing component and [Redux](https://github.com/rackt/redux) usage
 
+# Support
+* [css-modules](https://github.com/css-modules/css-modules)
+
 ## Getting Started
 
 To install `generator-rails-react-webpack` from npm, run:
@@ -65,87 +68,6 @@ Manage built tools and application dependencies
       }
     }
   ```
-- `default.config.js`: the basic webpack settings for both development and production environment. You can have any available
-  webpack settings here. For example, config [externals](http://webpack.github.io/docs/library-and-externals.html),
-  [loaders](http://webpack.github.io/docs/using-loaders.html), and so on.
-
-  ```javascript
-    module.exports = {
-      context: path.join(__dirname, '../', '../'),
-      entry: {
-        main: './app/frontend/javascripts/main'
-      },
-      ...
-      externals: {},
-      ...
-      module: {
-        loaders: [{
-          test: /.js$/,
-          //exclude: /node_modules(?!.*(\/js-csp))/, // ignore node_modules except node_modules/js-csp
-          exclude: /node_modules/,
-          loader: 'babel-loader?experimental&optional=runtime'
-        }]
-      },
-    };
-  ```
-- `development.config.js`: contains development config for webpack. For advance usage, [Code splitting](#Code splitting).
-
-  ```javascript
-    module.exports = _.merge(defaultConfig, {
-      entry: {
-        main: []
-      },
-      output: {
-        publicPath: 'http://localhost:8080/assets/build/'
-      },
-      cache: true,
-      debug: true,
-      outputPathinfo: true,
-      devtool: 'source-map',
-      devServer: {
-        contentBase: path.join(__dirname, './../../'),
-        hot: true,
-        inline: true
-      },
-      plugins: [
-        new webpack.HotModuleReplacementPlugin(), new webpack.NoErrorsPlugin(), // Hot Module Replacement
-        new webpack.DefinePlugin({ 'process.env.NODE_ENV': '"development"', '__DEV__': true })
-      ]
-      ...
-  ```
-- `production.config.js`: contains production config for webpack. For advance usage, [Code splitting](#Code splitting).
-
-  ```javascript
-    module.exports = _.merge(defaultConfig, {
-      devtool: false,
-      output: {
-        path: './public/assets',
-        publicPath: '/assets/',
-        filename: '[name]-[chunkhash].bundle.js',
-        chunkFilename: '[id]-[chunkhash].bundle.js'
-      },
-      plugins: [
-        new webpack.DefinePlugin({ 'process.env.NODE_ENV': '"production"', '__DEV__': false }),
-        new ChunkManifestPlugin({
-          filename: 'webpack-common-manifest.json',
-          manfiestVariable: 'webpackBundleManifest'
-        }),
-        new webpack.optimize.UglifyJsPlugin()
-      ]
-  ```
-- `javascript-build.js`: defines javascript built tasks.
-
-  ```javascript
-    var _        = require('lodash');
-    var config   = require('./config.json');
-    var del      = require('del');
-    var gulp     = require('gulp');
-    var gutil    = require('gulp-util');
-    ...
-
-    gulp.task('javascript:clean', function () { ... });
-    gulp.task('javascript:build', function () { ... });
-  ```
 
 ### Code splitting
 
@@ -154,32 +76,16 @@ Bundles are created by `require` or `require.ensure` will be automatically loade
 `devlopment.config.js` and `production.config.js` for `optimizing common chunk` have been added to config files.
 
 ```javascript
-  new webpack.optimize.CommonsChunkPlugin('common', 'common.bundle.js'), // development.config.js
+  new webpack.optimize.CommonsChunkPlugin('common', 'common.js'), // development.config.js
   new webpack.optimize.CommonsChunkPlugin('common', 'common-[chunkhash].bundle.js'), // production.config.js
 ```
 
-Uncomment those and add this tag `<%= webpack_bundle_tag 'common' %>` before your main bundle in your layout:
+Uncomment those and add this tag `<%= webpack_bundle_tag 'common.js' %>` before your main bundle in your layout:
 
 ```
-<%= webpack_bundle_tag 'common' %>
-<%= webpack_bundle_tag 'main' %>
+<%= webpack_bundle_tag 'common.js' %>
+<%= webpack_bundle_tag 'main.js' %>
 ```
-
-### Hot Module Replacement
-
-Refer to [HMR](https://github.com/gaearon/react-hot-loader) for detail implementations, only for `development.config.js`.
-This config will concat to every entry with specify in this `development.config.js`. The result will be like:
-
-```javascript
-  entry: {
-    main: [
-      'webpack/hot/dev-server',
-      './app/frontend/javascripts/main'
-    ]
-  },
-```
-
-Then [start coding](#Start developing)
 
 ### Current transformation applied
 
