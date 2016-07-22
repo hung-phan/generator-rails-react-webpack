@@ -1,8 +1,3 @@
-/*
- * React.js Starter Kit
- * Copyright (c) 2014 Konstantin Tarkus (@koistya), KriaSoft LLC.
- */
-
 'use strict';
 
 require('babel/register');

@@ -36,10 +36,6 @@ $ yo rails-react-webpack
 
 Answer 'Yes' to all 'Overwrite' actions. Then, update 'config/database.yml' if you use different database than 'sqlite3'.
 
-## Dependencies
-
-- [Bower](http://bower.io/) via `npm install -g bower`
-
 ## Application template
 
 ### Javascript modules
@@ -210,8 +206,6 @@ application/
   |  |  |- development.config.js
   |  |  |- javascript-build.js
   |  |  |- production.config.js
-  |  |- initializers/
-  |  |  |- bower_rails.rb # bower rails config
   |- db/
   |- lib/
   |  |- assets/
@@ -220,12 +214,6 @@ application/
   |- log/
   |- public/
   |- test/
-  |- vendor/
-  |  |- assets/
-  |  |  |- bower_components/
-  |  |  |  |- third libararies/
-  |- |  |- bower.json
-  |- Bowerfile # bower package dependencies
   |- config.ru
   |- gulpfile.js
   |- package.json

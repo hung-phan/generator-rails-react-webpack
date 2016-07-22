@@ -17,7 +17,7 @@ module.exports = {
   },
   externals: [],
   resolve: {
-    modulesDirectories: ['node_modules', 'vendor/assets/bower_components'],
+    modulesDirectories: ['node_modules'],
     extensions: ['', '.js']
   },
   module: {
@@ -44,7 +44,7 @@ module.exports = {
     new webpack.optimize.DedupePlugin(),
     new webpack.optimize.OccurrenceOrderPlugin(),
     new webpack.ResolverPlugin([
-      new webpack.ResolverPlugin.DirectoryDescriptionFilePlugin('.bower.json', ['main'])
+      new webpack.ResolverPlugin.DirectoryDescriptionFilePlugin(['main'])
     ])
   ]
 };

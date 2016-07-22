@@ -119,35 +119,9 @@ module.exports = yeoman.generators.Base.extend({
     shell.exec("bundle install");
   },
 
-  executeBowerTask: function() {
-    console.log(magenta('Processing Bowerfile'));
-    shell.exec("rails g bower_rails:initialize");
-  },
-
-  processingBowerfileTemplate: function() {
-    this.template('Bowerfile', 'tmp/yeoman/Bowerfile');
-  },
-
-  bower: function() {
-    //process bower
-    var path   = 'tmp/yeoman/Bowerfile',
-        dest   = 'Bowerfile',
-        file   = this.readFileAsString(dest),
-        insert = this.readFileAsString(path);
-
-    if (file.indexOf(insert) === -1) {
-      this.write(dest, file + insert);
-    }
-  },
-
-  bowerInstall: function() {
-    shell.exec("rake bower:install");
-  },
-
   copyTasks: function() {
     this.copy('_package.json', 'package.json');
     this.copy('_compiler.js', 'compiler.js');
-    this.copy('_bowerrc', '.bowerrc');
     this.copy('_babelrc', '.babelrc');
     this.copy('_eslintrc', '.eslintrc');
     this.copy('_gulpfile.js', 'gulpfile.js');

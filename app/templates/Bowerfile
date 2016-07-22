@@ -1,2 +1,0 @@
-# auto generate bower assets<% if (includeAnimateCss) { %>
-asset 'animate-sass'<% } %>

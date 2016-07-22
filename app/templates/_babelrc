@@ -1,15 +1,9 @@
 {
   "presets": ["es2015", "react", "stage-0"],
   "plugins": [
-    [
-      "transform-decorators-legacy",
-      "transform-runtime",
-    ],
-    ["typecheck", {
-      "disable": {
-        "production": true
-      }
-    }]
+    "transform-runtime",
+    "transform-decorators-legacy",
+    "typecheck"
   ],
   "env": {
     "development": {
@@ -24,6 +18,17 @@
             "imports": ["react", "redbox-react"]
           }]
         }]
+      ]
+    },
+    "production": {
+      "plugins": [
+        "transform-react-constant-elements",
+        "transform-react-inline-elements"
+      ]
+    },
+    "test": {
+      "plugins": [
+        "rewire"
       ]
     }
   }
