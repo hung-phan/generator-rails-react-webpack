@@ -24,7 +24,6 @@ module.exports = yeoman.generators.Base.extend({
       name: 'cssFile',
       message: 'What css library would you like to include?',
       choices: [
-        { name: 'Animate SCSS'           , value: 'includeAnimateCss'  , checked: false } ,
         { name: 'Bootstrap font-awesome' , value: 'includeFontAwesome' , checked: true }
       ]
     }];
@@ -33,7 +32,6 @@ module.exports = yeoman.generators.Base.extend({
       function includeCSS(css) { return props.cssFile.indexOf(css) !== -1; }
 
       // CSS
-      this.includeAnimateCss  = includeCSS('includeAnimateCss');
       this.includeFontAwesome = includeCSS('includeFontAwesome');
 
       cb();
@@ -296,9 +294,6 @@ module.exports = yeoman.generators.Base.extend({
   stylesheets: function() {
     console.log(magenta('Processing app stylesheets'));
     var extra  = '';
-    if (this.includeAnimateCss) {
-      extra += " *= require animate-sass/_animate.scss\n";
-    }
     var path   = 'app/assets/stylesheets/application.css',
         hook   = ' *= require_tree .\n',
         file   = this.readFileAsString(path),
