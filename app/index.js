@@ -47,9 +47,7 @@ module.exports = yeoman.generators.Base.extend({
       message: 'What tool support would you like to include?',
       choices: [
         { name: 'Grape Rest'            , value: 'includeGrape'      , checked: true  } ,
-        { name: 'therubyracer'          , value: 'includeRubyRacer'  , checked: false } ,
-        { name: 'mongoid (for mongodb)' , value: 'includeMongodb'    , checked: false } ,
-        { name: 'Livereload'            , value: 'includeLiveReload' , checked: false }
+        { name: 'mongoid (for mongodb)' , value: 'includeMongodb'    , checked: false }
       ]
     }];
 
@@ -58,8 +56,6 @@ module.exports = yeoman.generators.Base.extend({
 
       // template support
       this.includeMongodb    = includeTool('includeMongodb');
-      this.includeRubyRacer  = includeTool('includeRubyRacer');
-      this.includeLiveReload = includeTool('includeLiveReload');
       this.includeGrape      = includeTool('includeGrape');
 
       cb();
@@ -173,14 +169,6 @@ module.exports = yeoman.generators.Base.extend({
 
     if (file.indexOf(insert) === -1) {
       this.write(path, file.replace(hook, hook + insert));
-    }
-  },
-
-  guard: function() {
-    //process livereload
-    if (this.includeLiveReload) {
-      console.log(magenta('Add livereload utility'));
-      shell.exec("guard init livereload");
     }
   },
 
