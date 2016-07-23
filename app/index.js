@@ -92,23 +92,6 @@ module.exports = yeoman.generators.Base.extend({
     this.template('Gemfile', 'tmp/yeoman/Gemfile');
   },
 
-  gemfile: function() {
-    //process Gemfile
-    var path   = 'tmp/yeoman/Gemfile',
-        dest   = 'Gemfile',
-        file   = this.readFileAsString(dest),
-        insert = this.readFileAsString(path);
-
-    //modify file before insert
-    file = file.replace("# Use jquery as the JavaScript library\n", '')
-               .replace("# Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks\n", '')
-               .replace("gem 'turbolinks'\n", '');
-
-    if (file.indexOf(insert) === -1) {
-      this.write(dest, file + insert);
-    }
-  },
-
   bundleInstall: function() {
     shell.exec("bundle install");
   },
