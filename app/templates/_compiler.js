@@ -1,14 +1,16 @@
-'use strict';
+require('babel-core/register');
+require('jsdom-global')();
 
-require('babel/register');
+global.regeneratorRuntime = require('regenerator-runtime');
 
-var noop = function(module, file) {
+const noop = (module, file) => {
   module._compile('', file);
 };
 
-require.extensions['.css'] = noop;
-require.extensions['.gif'] = noop;
-require.extensions['.jpg'] = noop;
-require.extensions['.less'] = noop;
-require.extensions['.png'] = noop;
-require.extensions['.svg'] = noop;
+[
+  '.css', '.less', '.scss',
+  '.gif', '.jpg', '.png', '.svg',
+  '.ttf', '.eot', '.woff', '.woff2',
+].forEach((extension) => {
+  require.extensions[extension] = noop;
+});

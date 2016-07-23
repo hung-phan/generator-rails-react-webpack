@@ -1,0 +1,35 @@
+[ignore]
+.*/bin/.*
+.*/config/.*
+.*/db/.*
+.*/lib/.*
+.*/log/.*
+.*/node_modules/fbjs/.*
+.*/public/.*
+.*/spec/.*
+.*/test/.*
+
+[include]
+
+[libs]
+app/interfaces/bom.js.flow
+app/interfaces/core.js.flow
+app/interfaces/dom.js.flow
+app/interfaces/node.js.flow
+app/interfaces/react.js.flow
+
+[options]
+module.system=haste
+
+# alias for babel-plugin-module-alias
+module.name_mapper='^app\/\(.*\)$' -> '<PROJECT_ROOT>/app/\1'
+module.name_mapper='^config\/\(.*\)$' -> '<PROJECT_ROOT>/config/\1'
+module.name_mapper='^client\/\(.*\)$' -> '<PROJECT_ROOT>/app/client/\1'
+module.name_mapper='^server\/\(.*\)$' -> '<PROJECT_ROOT>/app/server/\1'
+
+module.name_mapper='.*\.\(css\|scss\)$' -> '<PROJECT_ROOT>/app/interfaces/css-modules.js.flow'
+module.name_mapper='.*\.\(svg\|png\|jpg\|jpeg\|gif\)$' -> '<PROJECT_ROOT>/app/interfaces/webpack-assets.js.flow'
+
+esproposal.class_static_fields=enable
+esproposal.class_instance_fields=enable
+suppress_comment= \\(.\\|\n\\)*\\$FlowFixMe
