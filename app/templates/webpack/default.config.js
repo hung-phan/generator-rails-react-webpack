@@ -9,16 +9,19 @@ module.exports = {
   context: ROOT,
   entry: {
     main: [
-      path.join(ROOT, config.webpack.path, 'main')
-    ]
+      path.join(ROOT, config.webpack.path, 'main'),
+    ],
   },
   output: {
-    path: config.webpack.build
+    path: config.webpack.build,
   },
   externals: [],
   resolve: {
-    modulesDirectories: ['node_modules'],
-    extensions: ['', '.js']
+    extensions: ['', '.js'],
+    modules: [
+      path.resolve('./app/frontend/javascripts'),
+      'node_modules',
+    ],
   },
   module: {
     loaders: [
@@ -26,25 +29,19 @@ module.exports = {
         test: /.js$/,
         // exclude: /node_modules(?!.*(\/js-csp))/, // ignore node_modules except node_modules/js-csp
         exclude: /node_modules/,
-        loader: 'babel-loader'
-      },
-      {
-        test: /.js$/,
-        exclude: /node_modules/,
-        loader: 'eslint-loader'
+        loaders: ['babel-loader', 'eslint-loader'],
       },
       {
         test: /\.(gif|jpg|jpeg|png|svg|ttf|eot|woff|woff2)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
-        loader: 'file-loader'
-      }
-    ]
+        loader: 'file-loader',
+      },
+    ],
   },
   plugins: [
     new webpack.optimize.AggressiveMergingPlugin(),
-    new webpack.optimize.DedupePlugin(),
     new webpack.optimize.OccurrenceOrderPlugin(),
-    new webpack.ResolverPlugin([
-      new webpack.ResolverPlugin.DirectoryDescriptionFilePlugin(['main'])
-    ])
-  ]
+  ],
+  eslint: {
+    emitWarning: true,
+  },
 };

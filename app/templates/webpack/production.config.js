@@ -3,7 +3,6 @@
 const _ = require('lodash');
 const config = require('./config.json');
 const cssnext = require('postcss-cssnext');
-const cssnano = require('cssnano');
 const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const ManifestPlugin = require('webpack-manifest-plugin');
@@ -19,7 +18,7 @@ _.mergeWith(productionConfig, {
     chunkFilename: '[id]-[chunkhash].bundle.js'
   },
   postcss() {
-    return [cssnext(), cssnano];
+    return [cssnext()];
   }
 }, (obj1, obj2) =>
   _.isArray(obj2) ? obj2.concat(obj1) : undefined
@@ -28,15 +27,24 @@ _.mergeWith(productionConfig, {
 productionConfig.module.loaders.push(
   {
     test: /\.css$/,
-    loader: ExtractTextPlugin.extract('style', `css${config.cssModules}!postcss`)
+    loader: ExtractTextPlugin.extract({
+      notExtractLoader: 'style',
+      loader: `css${config.cssModules}!postcss`,
+    }),
   },
   {
     test: /\.less$/,
-    loader: ExtractTextPlugin.extract('style', `css${config.cssModules}!postcss!less`)
+    loader: ExtractTextPlugin.extract({
+      notExtractLoader: 'style',
+      loader: `css${config.cssModules}!postcss!less`,
+    }),
   },
   {
     test: /\.scss$/,
-    loader: ExtractTextPlugin.extract('style', `css${config.cssModules}!postcss!sass`)
+    loader: ExtractTextPlugin.extract({
+      notExtractLoader: 'style',
+      loader: `css${config.cssModules}!postcss!sass`,
+    }),
   }
 );
 
@@ -54,7 +62,20 @@ productionConfig.plugins.push(
     filename: 'webpack-common-manifest.json',
     manfiestVariable: 'webpackBundleManifest'
   }),
-  new webpack.optimize.UglifyJsPlugin()
+  new webpack.LoaderOptionsPlugin({
+    minimize: true,
+    debug: false,
+  }),
+  new webpack.optimize.UglifyJsPlugin({
+    compress: {
+      warnings: false,
+    },
+    output: {
+      comments: false,
+    },
+    sourceMap: false,
+  }),
+  new CompressionPlugin()
 );
 
 module.exports = productionConfig;

@@ -94,8 +94,8 @@ Uncomment those and add this tag `<%= webpack_bundle_tag 'common.js' %>` before 
 ### Available gulp task
 
 ```bash
-$ gulp javascript:clean # remove the build folder placed at 'app/assets/javascripts/build'
-$ gulp javascript:build # should use this for testing only, please read Assets compile
+$ gulp clean # remove the build folder placed at 'app/assets/javascripts/build'
+$ gulp build # should use this for testing only, please read Assets compile
 ```
 
 ## Start developing

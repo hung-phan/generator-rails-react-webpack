@@ -4,5 +4,5 @@
     "test": "./__tests__/**/*-test.js",
     "build": "./app/assets/javascripts/build"
   },
-  "cssModules": "?localIdentName=[hash]__[local]"
+  "cssModules": "?localIdentName=[local]__[hash:base64:5]"
 }
