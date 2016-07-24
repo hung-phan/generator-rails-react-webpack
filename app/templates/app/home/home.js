@@ -1,5 +1,5 @@
-import style from './style.css';
 import React from 'react';
+import style from './style.css';
 
 class Home extends React.Component {
   state: { text: string } = {

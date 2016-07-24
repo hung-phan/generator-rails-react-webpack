@@ -12,7 +12,7 @@ _.mergeWith(developmentConfig, {
   output: {
     publicPath: 'http://localhost:8080/assets/build/',
     filename: '[name].js',
-    chunkFilename: '[id].js'
+    chunkFilename: '[id].js',
   },
   cache: true,
   debug: true,
@@ -21,11 +21,11 @@ _.mergeWith(developmentConfig, {
   devServer: {
     contentBase: ROOT,
     hot: true,
-    inline: true
+    inline: true,
   },
   postcss() {
     return [cssnext()];
-  }
+  },
 }, (obj1, obj2) =>
   _.isArray(obj2) ? obj2.concat(obj1) : undefined
 );
@@ -33,15 +33,15 @@ _.mergeWith(developmentConfig, {
 developmentConfig.module.loaders.push(
   {
     test: /\.css$/,
-    loader: `style!css${config.cssModules}!postcss`
+    loader: `style!css${config.cssModules}!postcss`,
   },
   {
     test: /\.less$/,
-    loader: `style!css${config.cssModules}!postcss!less`
+    loader: `style!css${config.cssModules}!postcss!less`,
   },
   {
     test: /\.scss$/,
-    loader: `style!css${config.cssModules}!postcss!sass`
+    loader: `style!css${config.cssModules}!postcss!sass`,
   }
 );
 
@@ -49,7 +49,7 @@ developmentConfig.plugins.push(
   // new webpack.optimize.CommonsChunkPlugin('common', 'common.js'), // Code splitting
   new webpack.DefinePlugin({
     'process.env.NODE_ENV': "'development'",
-    __DEV__: true
+    __DEV__: true,
   }),
   new webpack.HotModuleReplacementPlugin(), new webpack.NoErrorsPlugin() // Hot Module Replacement
 );

@@ -6,6 +6,7 @@ const cssnext = require('postcss-cssnext');
 const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const ManifestPlugin = require('webpack-manifest-plugin');
+const CompressionPlugin = require('compression-webpack-plugin');
 const ChunkManifestPlugin = require('chunk-manifest-webpack-plugin');
 const productionConfig = require('./default.config');
 
@@ -15,11 +16,11 @@ _.mergeWith(productionConfig, {
     path: './public/assets',
     publicPath: '/assets/',
     filename: '[name]-[chunkhash].bundle.js',
-    chunkFilename: '[id]-[chunkhash].bundle.js'
+    chunkFilename: '[id]-[chunkhash].bundle.js',
   },
   postcss() {
     return [cssnext()];
-  }
+  },
 }, (obj1, obj2) =>
   _.isArray(obj2) ? obj2.concat(obj1) : undefined
 );
@@ -52,15 +53,15 @@ productionConfig.plugins.push(
   // new webpack.optimize.CommonsChunkPlugin('common', 'common-[chunkhash].bundle.js'), // Code splitting
   new webpack.DefinePlugin({
     'process.env.NODE_ENV': "'production'",
-    __DEV__: false
+    __DEV__: false,
   }),
   new ExtractTextPlugin('[name]-[contenthash].css'),
   new ManifestPlugin({
-    fileName: 'webpack-asset-manifest.json'
+    fileName: 'webpack-asset-manifest.json',
   }),
   new ChunkManifestPlugin({
     filename: 'webpack-common-manifest.json',
-    manfiestVariable: 'webpackBundleManifest'
+    manfiestVariable: 'webpackBundleManifest',
   }),
   new webpack.LoaderOptionsPlugin({
     minimize: true,
