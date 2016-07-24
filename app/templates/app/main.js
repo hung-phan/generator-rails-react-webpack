@@ -12,6 +12,6 @@ $(document).ready(() => {
 // expose jQuery for jquery_ujs and React for react_ujs
 Object.assign(window, {
   $,
+  React,
   jQuery: $,
-  React
 });

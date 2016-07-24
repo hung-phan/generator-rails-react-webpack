@@ -4,6 +4,6 @@ import Home from './home/home';
 
 export default (
   <Router history={browserHistory}>
-    <Route path='/' component={Home} />
+    <Route path="/" component={Home} />
   </Router>
 );
