@@ -8,7 +8,7 @@ class Home extends React.Component {
 
   clickMeUpdate = () => {
     this.setState({
-      text: this.state.text.split('').reverse().join('')
+      text: this.state.text.split('').reverse().join(''),
     });
   };
 

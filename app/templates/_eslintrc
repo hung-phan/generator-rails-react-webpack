@@ -1,17 +1,26 @@
 {
   "extends": "airbnb",
   "parser": "babel-eslint",
-  "plugins": ["mocha"],
+  "plugins": ["mocha", "flow-vars"],
   "env": {
     "mocha": true,
     "browser": true,
     "node": true
   },
   "rules": {
-    "max-len": [0],
-    "func-names": [0],
-    "comma-dangle": [0],
-    "jsx-quotes": [1, "prefer-single"],
-    "mocha/no-exclusive-tests": 2
+    "max-len": 0,
+    "func-names": 0,
+    "no-param-reassign": 0,
+    "mocha/no-exclusive-tests": 2,
+    "global-require": 0,
+    "no-underscore-dangle": 0,
+    "flow-vars/define-flow-type": 1,
+    "flow-vars/use-flow-type": 1
+  },
+  "settings": {
+    "import/resolver": {
+      "babel-module-alias": {},
+      "webpack": {}
+    }
   }
 }

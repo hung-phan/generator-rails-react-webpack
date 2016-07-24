@@ -92,11 +92,24 @@ module.exports = yeoman.generators.Base.extend({
     this.template('Gemfile', 'tmp/yeoman/Gemfile');
   },
 
+  gemfile: function() {
+    //process Gemfile
+    var path   = 'tmp/yeoman/Gemfile',
+        dest   = 'Gemfile',
+        file   = this.readFileAsString(dest),
+        insert = this.readFileAsString(path);
+
+    if (file.indexOf(insert) === -1) {
+      this.write(dest, file + insert);
+    }
+  },
+
   bundleInstall: function() {
     shell.exec("bundle install");
   },
 
   copyTasks: function() {
+    this.copy('_flowconfig', '.flowconfig');
     this.copy('_package.json', 'package.json');
     this.copy('_compiler.js', 'compiler.js');
     this.copy('_babelrc', '.babelrc');
