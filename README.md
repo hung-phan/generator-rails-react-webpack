@@ -8,9 +8,6 @@
 
 Consider to see koa-react-isomorphic project for testing component and [Redux](https://github.com/rackt/redux) usage
 
-# Support
-* [css-modules](https://github.com/css-modules/css-modules)
-
 ## Getting Started
 
 To install `generator-rails-react-webpack` from npm, run:
@@ -83,14 +80,6 @@ Uncomment those and add this tag `<%= webpack_bundle_tag 'common.js' %>` before 
 <%= webpack_bundle_tag 'main.js' %>
 ```
 
-### Current transformation applied
-
-- [babel-loader](https://github.com/babel/babel-loader)
-- [babel-plugin-typecheck](https://github.com/codemix/babel-plugin-typecheck)
-- [expose-loader](https://github.com/webpack/expose-loader)
-- [imports-loader](https://github.com/webpack/imports-loader)
-- [exports-loader](https://github.com/webpack/exports-loader)
-
 ### Available gulp task
 
 ```bash
@@ -135,17 +124,20 @@ add `--skip-active-record` option to your `rails new app --skip-active-record` c
 
 ## Task
 
+## Enable flowtype in development
+```bash
+$ npm run flow:watch
+$ npm run flow:stop # to terminate the server
+```
+
 ## Testing
 Test files are placed in the same folder with component.
 
 ```
 ▾ home/
     home-test.js
-    home.js*
+    home.js
 ```
-
-Use iojs instead of node to run mocha test (See more [here](https://github.com/tmpvar/jsdom)). And update mocha config
-if you need to in `package.json`
 
 ```bash
 npm test # unit test
@@ -153,12 +145,6 @@ npm test # unit test
 
 ```bash
 npm run test:converage # generate test coverage using istanbul
-```
-
-## Enable flowtype in development
-```bash
-$ npm run flow:watch
-$ npm run flow:stop # to terminate the server
 ```
 
 You need to add annotation to the file to enable flowtype (`// @flow`)
