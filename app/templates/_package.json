@@ -4,6 +4,7 @@
   "devDependencies": {
     "babel-plugin-rewire": "^1.0.0-rc-4",
     "chai": "^3.5.0",
+    "chokidar-cli": "^1.2.0",
     "co-mocha": "^1.1.2",
     "co-supertest": "0.0.10",
     "enzyme": "^2.4.1",
@@ -85,8 +86,11 @@
     "webpack-manifest-plugin": "^1.0.1"
   },
   "scripts": {
+    "flow:status": "flow status; test $? -eq 0 -o $? -eq 2",
+    "flow:watch": "npm run flow:status && chokidar './app/**/*.js' './tests/**/*.js' -c 'npm run flow:status'",
+    "flow:stop": "flow stop",
     "test": "NODE_ENV=test mocha --watch --compilers js:compiler.js --require co-mocha 'app/frontend/javascripts/**/*-test.js'",
-    "test-coverage": "istanbul cover node_modules/.bin/_mocha -- --compilers js:compiler.js --require co-mocha 'app/frontend/javascripts/**/*-test.js'",
+    "test:coverage": "istanbul cover node_modules/.bin/_mocha -- --compilers js:compiler.js --require co-mocha 'app/frontend/javascripts/**/*-test.js'",
     "dev": "NODE_ENV=development webpack-dev-server --config config/webpack/development.config.js",
     "build": "NODE_ENV=production webpack --config config/webpack/production.config.js"
   },

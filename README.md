@@ -152,8 +152,16 @@ npm test # unit test
 ```
 
 ```bash
-npm run test-converage # generate test coverage using istanbul
+npm run test:converage # generate test coverage using istanbul
 ```
+
+## Enable flowtype in development
+```bash
+$ npm run flow:watch
+$ npm run flow:stop # to terminate the server
+```
+
+You need to add annotation to the file to enable flowtype (`// @flow`)
 
 ## Structure
 

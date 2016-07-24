@@ -94,6 +94,7 @@ module.exports = yeoman.generators.Base.extend({
     this.copy('_eslintrc', '.eslintrc');
     this.copy('_gulpfile.js', 'gulpfile.js');
     this.directory('webpack', 'config/webpack');
+    this.directory('interfaces', 'app/interfaces');
     this.copy('initializers/webpack.rb', 'config/initializers/webpack.rb');
     this.copy('tasks/webpack.rake', 'lib/tasks/webpack.rake');
     this.copy('helpers/application_helper.rb', 'app/helpers/application_helper.rb');
