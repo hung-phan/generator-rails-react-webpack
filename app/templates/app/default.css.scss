@@ -1,7 +1,3 @@
-@import "bootstrap-sprockets";
-@import "bootstrap";<% if (includeFontAwesome) { %>
-@import "font-awesome";<% } %>
-
 $xs-small-screen:  320px;
 $small-screen:     480px;
 $medium-screen:    768px;

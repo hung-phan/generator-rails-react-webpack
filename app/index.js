@@ -16,28 +16,6 @@ module.exports = yeoman.generators.Base.extend({
     });
   },
 
-  askForCSSLibrary: function () {
-    var cb = this.async();
-
-    var prompts = [{
-      type: 'checkbox',
-      name: 'cssFile',
-      message: 'What css library would you like to include?',
-      choices: [
-        { name: 'Bootstrap font-awesome' , value: 'includeFontAwesome' , checked: true }
-      ]
-    }];
-
-    this.prompt(prompts, function (props) {
-      function includeCSS(css) { return props.cssFile.indexOf(css) !== -1; }
-
-      // CSS
-      this.includeFontAwesome = includeCSS('includeFontAwesome');
-
-      cb();
-    }.bind(this));
-  },
-
   assForUtility: function() {
     var cb = this.async();
 
@@ -184,7 +162,6 @@ module.exports = yeoman.generators.Base.extend({
                .replace("//= require jquery\n", '')
                .replace("//= require jquery_ujs\n", '')
                .replace("//= require_tree .",
-                        "//= require bootstrap\n" +
                         "//= require react_ujs\n");
 
     this.write(path, file);
