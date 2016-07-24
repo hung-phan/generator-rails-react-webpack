@@ -87,7 +87,7 @@
   },
   "scripts": {
     "flow:status": "flow status; test $? -eq 0 -o $? -eq 2",
-    "flow:watch": "npm run flow:status && chokidar './app/**/*.js' './tests/**/*.js' -c 'npm run flow:status'",
+    "flow:watch": "npm run flow:status && chokidar './app/**/*.js' -c 'npm run flow:status'",
     "flow:stop": "flow stop",
     "test": "NODE_ENV=test mocha --watch --compilers js:compiler.js --require co-mocha 'app/frontend/javascripts/**/*-test.js'",
     "test:coverage": "istanbul cover node_modules/.bin/_mocha -- --compilers js:compiler.js --require co-mocha 'app/frontend/javascripts/**/*-test.js'",

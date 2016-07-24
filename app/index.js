@@ -172,6 +172,7 @@ module.exports = yeoman.generators.Base.extend({
     this.copy('app/home/home-test.js', 'app/frontend/javascripts/home/home-test.js');
     this.copy('app/home/style.css', 'app/frontend/javascripts/home/style.css');
     this.directory('app/helpers', 'app/frontend/javascripts/helpers');
+    this.directory('app/libs', 'app/frontend/javascripts/libs');
   },
 
   reactConfig: function() {
@@ -246,23 +247,5 @@ module.exports = yeoman.generators.Base.extend({
 
   copySpecs: function() {
     this.copy('spec/apis/person_spec.rb', 'spec/apis/person_spec.rb');
-  },
-
-  defaultStylesheet: function() {
-    console.log(magenta('Copy default.css.scss file'));
-    this.template('app/default.css.scss', 'app/assets/stylesheets/default.css.scss');
-  },
-
-  stylesheets: function() {
-    console.log(magenta('Processing app stylesheets'));
-    var extra  = '';
-    var path   = 'app/assets/stylesheets/application.css',
-        hook   = ' *= require_tree .\n',
-        file   = this.readFileAsString(path),
-        insert = ' *= require default\n' + extra + ' *= require_tree .\n';
-
-    if (file.indexOf(insert) === -1) {
-      this.write(path, file.replace(hook, insert));
-    }
   }
 });
